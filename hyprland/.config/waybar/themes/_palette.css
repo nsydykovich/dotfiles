@@ -1,0 +1,11 @@
+/* Палитра AncientAliens — общая для всех тем */
+@define-color bg        rgba(9, 17, 28, 0.93);
+@define-color bg_solid  #09111c;
+@define-color card      #13202d;
+@define-color border    #2d485b;
+@define-color fg        #d6e6f2;
+@define-color muted     #8aa3b8;
+@define-color accent    #aad5f0;
+@define-color select    #3e6f92;
+@define-color warn      #f0c674;
+@define-color crit      #e8828a;

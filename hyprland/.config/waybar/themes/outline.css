@@ -1,0 +1,34 @@
+/* Тема «Контур»: капсулы-рамки без заливки, акцент только на активном и при наведении */
+@import url("_palette.css");
+
+* { font-family: "Roboto", "CaskaydiaCove Nerd Font"; font-size: 13px; min-height: 0; border: none; }
+
+window#waybar { background: @bg; color: @fg; border-radius: 14px; }
+tooltip { background: @card; border: 1px solid @border; border-radius: 10px; }
+tooltip label { color: @fg; }
+
+.modules-left > widget > *, .modules-center > widget > *, .modules-right > widget > * {
+  border: 1px solid @border;
+  border-radius: 10px;
+  padding: 0 10px;
+  margin: 5px 0;
+  transition: all 150ms ease;
+}
+.modules-left  > widget:first-child > * { margin-left: 5px; }
+.modules-right > widget:last-child  > * { margin-right: 5px; }
+.modules-left > widget > *:hover, .modules-right > widget > *:hover { border-color: @accent; color: @accent; }
+
+#custom-launcher, #custom-control-center { color: @accent; font-size: 15px; }
+#workspaces { padding: 0 3px; }
+#workspaces button { color: @muted; background: transparent; border: 1px solid transparent; border-radius: 7px; padding: 0 7px; margin: 3px 1px; }
+#workspaces button:hover { color: @fg; background: transparent; box-shadow: none; }
+#workspaces button.active { color: @accent; border-color: @accent; }
+#workspaces button.urgent { color: @crit; border-color: @crit; }
+#window { color: @muted; }
+window#waybar.empty #window { border-color: transparent; }
+#clock { color: @accent; font-weight: bold; border-color: @accent; }
+
+#temperature.critical, #battery.critical:not(.charging) { color: @crit; border-color: @crit; }
+#battery.warning:not(.charging) { color: @warn; border-color: @warn; }
+#battery.charging, #battery.plugged { color: @accent; }
+#pulseaudio.muted, #custom-notifications.dnd { color: @muted; }

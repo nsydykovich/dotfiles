@@ -1,0 +1,306 @@
+// Waybar «aliens» — своя раскладка поверх noctalia. Сгенерирован; иконки — Material Design (U+F0000+).
+// Данные и действия идут через noctalia: scripts/noctalia-bridge.py и `noctalia msg ...`.
+// Переключение раскладок: scripts/layout.sh <classic|aliens>
+{
+  "layer": "top",
+  "position": "top",
+  "height": 34,
+  "margin-top": 8,
+  "margin-left": 8,
+  "margin-right": 8,
+  "spacing": 2,
+  "reload_style_on_change": true,
+  "modules-left": [
+    "custom/launcher",
+    "hyprland/workspaces",
+    "hyprland/window"
+  ],
+  "modules-center": [
+    "mpris",
+    "group/hub"
+  ],
+  "modules-right": [
+    "group/stats",
+    "group/traybox",
+    "group/toggles",
+    "group/sys",
+    "custom/control-center"
+  ],
+  "custom/launcher": {
+    "format": "󰣇",
+    "tooltip-format": "Applications\nRight-click: wallpapers",
+    "on-click": "noctalia msg panel-toggle launcher",
+    "on-click-right": "noctalia msg panel-toggle wallpaper"
+  },
+  "hyprland/workspaces": {
+    "format": "<span size='9pt' rise='1pt'>{id}</span>  {windows}",
+    "format-window-separator": " ",
+    "window-rewrite-default": "󰖯",
+    "window-rewrite": {
+      "class<firefox>": "󰈹",
+      "class<com.mitchellh.ghostty>": "󰆍",
+      "class<kitty|foot|Alacritty>": "󰆍",
+      "class<discord|vesktop>": "󰙯",
+      "class<org.telegram.desktop|telegram.*>": "󰍡",
+      "class<code|code-oss|Code>": "󰨞",
+      "class<org.kde.dolphin|thunar|nautilus>": "󰉋",
+      "class<org.kde.kate>": "󰏫",
+      "class<mpv|vlc>": "󰎁",
+      "class<steam>": "󰓓",
+      "class<zapfast>": "󰑐"
+    },
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1"
+  },
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 42,
+    "separate-outputs": true,
+    "rewrite": {
+      "": ""
+    }
+  },
+  "mpris": {
+    "format": "{player_icon}  {dynamic}",
+    "format-paused": "{status_icon}  <i>{dynamic}</i>",
+    "dynamic-len": 34,
+    "dynamic-order": [
+      "artist",
+      "title"
+    ],
+    "dynamic-separators": " — ",
+    "player-icons": {
+      "default": "󰝚",
+      "firefox": "󰈹",
+      "spotify": "󰓇"
+    },
+    "status-icons": {
+      "paused": "󰏤"
+    },
+    "tooltip-format": "{player}: {artist} — {title}\nClick: play/pause · Right-click: player · Scroll: track",
+    "on-click": "noctalia msg media toggle",
+    "on-click-right": "noctalia msg panel-toggle control-center media",
+    "on-scroll-up": "noctalia msg media next",
+    "on-scroll-down": "noctalia msg media previous"
+  },
+  "group/hub": {
+    "orientation": "horizontal",
+    "modules": [
+      "clock",
+      "custom/weather"
+    ]
+  },
+  "clock": {
+    "format": "{:%H:%M}",
+    "format-alt": "{:%a, %d %b  %H:%M}",
+    "locale": "en_US.UTF-8",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+      "mode": "month",
+      "weeks-pos": "",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#aad5f0'><b>{}</b></span>",
+        "weekdays": "<span color='#8aa3b8'>{}</span>",
+        "today": "<span background='#aad5f0' color='#09111c'><b> {} </b></span>",
+        "days": "<span color='#d6e6f2'>{}</span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    },
+    "on-click-middle": "noctalia msg panel-toggle control-center calendar"
+  },
+  "custom/weather": {
+    "exec": "~/.config/waybar/scripts/noctalia-bridge.py weather",
+    "return-type": "json",
+    "interval": 300,
+    "on-click": "noctalia msg panel-toggle control-center weather"
+  },
+  "group/stats": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 350,
+      "transition-left-to-right": false,
+      "children-class": "stats-child"
+    },
+    "modules": [
+      "cpu",
+      "memory",
+      "temperature"
+    ]
+  },
+  "cpu": {
+    "interval": 2,
+    "format": "󰘚  {usage}%",
+    "on-click": "noctalia msg panel-toggle control-center system",
+    "states": {
+      "busy": 60,
+      "hot": 85
+    }
+  },
+  "memory": {
+    "interval": 3,
+    "format": "󰍛  {percentage}%",
+    "tooltip-format": "{used:0.1f} / {total:0.1f} GiB",
+    "on-click": "noctalia msg panel-toggle control-center system"
+  },
+  "temperature": {
+    "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
+    "input-filename": "temp1_input",
+    "critical-threshold": 85,
+    "format": "󰔏  {temperatureC}°",
+    "tooltip-format": "CPU (Tctl): {temperatureC}°C"
+  },
+  "group/traybox": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 350,
+      "transition-left-to-right": false,
+      "click-to-reveal": true
+    },
+    "modules": [
+      "custom/trayhandle",
+      "tray"
+    ]
+  },
+  "custom/trayhandle": {
+    "format": "󰅁",
+    "tooltip-format": "Tray (click to expand)"
+  },
+  "tray": {
+    "icon-size": 15,
+    "spacing": 10
+  },
+  "group/toggles": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/nc-wifi",
+      "custom/nc-bluetooth",
+      "custom/nc-caffeine",
+      "custom/nc-night",
+      "custom/nc-dnd"
+    ]
+  },
+  "custom/nc-wifi": {
+    "exec": "~/.config/waybar/scripts/noctalia-bridge.py wifi",
+    "return-type": "json",
+    "interval": 5,
+    "signal": 10,
+    "on-click": "~/.config/waybar/scripts/noctalia-bridge.py wifi toggle",
+    "tooltip": true,
+    "on-click-right": "noctalia msg panel-toggle control-center network"
+  },
+  "custom/nc-bluetooth": {
+    "exec": "~/.config/waybar/scripts/noctalia-bridge.py bluetooth",
+    "return-type": "json",
+    "interval": 5,
+    "signal": 10,
+    "on-click": "~/.config/waybar/scripts/noctalia-bridge.py bluetooth toggle",
+    "tooltip": true,
+    "on-click-right": "noctalia msg panel-toggle control-center bluetooth"
+  },
+  "custom/nc-caffeine": {
+    "exec": "~/.config/waybar/scripts/noctalia-bridge.py caffeine",
+    "return-type": "json",
+    "interval": 5,
+    "signal": 10,
+    "on-click": "~/.config/waybar/scripts/noctalia-bridge.py caffeine toggle",
+    "tooltip": true
+  },
+  "custom/nc-night": {
+    "exec": "~/.config/waybar/scripts/noctalia-bridge.py night",
+    "return-type": "json",
+    "interval": 30,
+    "signal": 10,
+    "on-click": "~/.config/waybar/scripts/noctalia-bridge.py night toggle",
+    "tooltip": true
+  },
+  "custom/nc-dnd": {
+    "exec": "~/.config/waybar/scripts/noctalia-bridge.py dnd",
+    "return-type": "json",
+    "interval": 5,
+    "signal": 10,
+    "on-click": "~/.config/waybar/scripts/noctalia-bridge.py dnd toggle",
+    "tooltip": true,
+    "on-click-right": "noctalia msg panel-toggle control-center notifications"
+  },
+  "group/sys": {
+    "orientation": "horizontal",
+    "modules": [
+      "hyprland/language",
+      "pulseaudio",
+      "backlight",
+      "battery"
+    ]
+  },
+  "hyprland/language": {
+    "format": "{short}",
+    "on-click": "noctalia msg keyboard-layout-cycle"
+  },
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-muted": "󰝟  {volume}%",
+    "format-icons": {
+      "headphone": "󰋋",
+      "default": [
+        "󰕿",
+        "󰖀",
+        "󰕾"
+      ]
+    },
+    "on-click": "noctalia msg panel-toggle control-center audio",
+    "on-click-right": "noctalia msg volume-mute",
+    "on-scroll-up": "noctalia msg volume-up",
+    "on-scroll-down": "noctalia msg volume-down",
+    "smooth-scrolling-threshold": 1
+  },
+  "backlight": {
+    "device": "amdgpu_bl1",
+    "format": "{icon}  {percent}%",
+    "format-icons": [
+      "󰃞",
+      "󰃟",
+      "󰃠"
+    ],
+    "on-click": "noctalia msg panel-toggle control-center monitor",
+    "on-scroll-up": "noctalia msg brightness-up",
+    "on-scroll-down": "noctalia msg brightness-down",
+    "smooth-scrolling-threshold": 1
+  },
+  "battery": {
+    "bat": "BAT1",
+    "interval": 30,
+    "states": {
+      "warning": 25,
+      "critical": 10
+    },
+    "format": "{icon}  {capacity}%",
+    "format-charging": "󰂄  {capacity}%",
+    "format-plugged": "󰚥  {capacity}%",
+    "format-icons": [
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
+    "tooltip-format": "{timeTo}\n{power:.1f} W",
+    "on-click": "noctalia msg panel-toggle control-center power"
+  },
+  "custom/control-center": {
+    "format": "󱕂",
+    "tooltip-format": "Control Center\nRight-click: session · Middle-click: Noctalia settings",
+    "on-click": "noctalia msg panel-toggle control-center",
+    "on-click-right": "noctalia msg panel-toggle session",
+    "on-click-middle": "noctalia msg settings-toggle"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "version": 2,
+  "base": "GitHub",
+  "dark": {
+    "primary": "#58a6ff",
+    "on_primary": "#0d1117",
+    "secondary": "#bc8cff",
+    "on_secondary": "#0d1117",
+    "tertiary": "#3fb950",
+    "on_tertiary": "#0d1117",
+    "error": "#f85149",
+    "on_error": "#0d1117",
+    "surface": "#0d1117",
+    "on_surface": "#e6edf3",
+    "surface_container": "#161b22",
+    "on_surface_variant": "#9198a1",
+    "outline_variant": "#30363d",
+    "shadow": "#010409",
+    "hover": "#30363d",
+    "on_hover": "#e6edf3",
+    "terminal": {
+      "background": "#0d1117",
+      "foreground": "#e6edf3",
+      "cursor": "#2f81f7",
+      "cursor_text": "#0d1117",
+      "selection_bg": "#264f78",
+      "selection_fg": "#e6edf3",
+      "normal": {
+        "black": "#484f58",
+        "red": "#ff7b72",
+        "green": "#3fb950",
+        "yellow": "#d29922",
+        "blue": "#58a6ff",
+        "magenta": "#bc8cff",
+        "cyan": "#39c5cf",
+        "white": "#b1bac4"
+      },
+      "bright": {
+        "black": "#6e7681",
+        "red": "#ffa198",
+        "green": "#56d364",
+        "yellow": "#e3b341",
+        "blue": "#79c0ff",
+        "magenta": "#d2a8ff",
+        "cyan": "#56d4dd",
+        "white": "#ffffff"
+      }
+    }
+  },
+  "light": {
+    "primary": "#0969da",
+    "on_primary": "#ffffff",
+    "secondary": "#8250df",
+    "on_secondary": "#ffffff",
+    "tertiary": "#1a7f37",
+    "on_tertiary": "#ffffff",
+    "error": "#cf222e",
+    "on_error": "#ffffff",
+    "surface": "#ffffff",
+    "on_surface": "#1f2328",
+    "surface_container": "#f6f8fa",
+    "on_surface_variant": "#59636e",
+    "outline_variant": "#d1d9e0",
+    "shadow": "#d1d9e0",
+    "hover": "#eaeef2",
+    "on_hover": "#1f2328",
+    "terminal": {
+      "background": "#ffffff",
+      "foreground": "#1f2328",
+      "cursor": "#0969da",
+      "cursor_text": "#ffffff",
+      "selection_bg": "#b6e3ff",
+      "selection_fg": "#1f2328",
+      "normal": {
+        "black": "#24292f",
+        "red": "#cf222e",
+        "green": "#116329",
+        "yellow": "#4d2d00",
+        "blue": "#0969da",
+        "magenta": "#8250df",
+        "cyan": "#1b7c83",
+        "white": "#6e7781"
+      },
+      "bright": {
+        "black": "#57606a",
+        "red": "#a40e26",
+        "green": "#1a7f37",
+        "yellow": "#633c01",
+        "blue": "#218bff",
+        "magenta": "#a475f9",
+        "cyan": "#3192aa",
+        "white": "#8c959f"
+      }
+    }
+  }
+}

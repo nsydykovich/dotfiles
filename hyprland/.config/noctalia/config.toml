@@ -1,0 +1,121 @@
+# Noctalia v5 — перенесено из v4 (~/.config/noctalia-v4-old/settings.json)
+# Изменения из GUI сохраняются в ~/.local/state/noctalia/settings.toml и перекрывают этот файл.
+
+[shell]
+font_family = "Roboto"          # v4: ui.fontDefault
+
+[bar.default]
+# Один плавающий островок; модули разложены по группам (группы без фона — отделены интервалом).
+# Отступы 8px = general:gaps_out Hyprland, края панели вровень с окнами.
+enabled            = false          # панель — waybar (~/.config/waybar, раскладка main)
+position           = "top"
+thickness          = 32
+background_opacity = 0.72           # полупрозрачно + compositor blur
+compositor_blur    = true
+border_width       = 0.0
+radius             = 15
+concave_edge_corners = false
+margin_edge        = 8
+margin_ends        = 8
+padding            = 12
+widget_spacing     = 20             # интервал МЕЖДУ группами
+hover_highlight    = false          # без подсветки при наведении
+capsule            = false
+font_scale         = 0.9
+start  = [ "launcher", "workspaces", "group:sys", "active_window" ]
+center = [ "clock" ]
+end    = [ "tray", "group:input", "group:hw", "group:shell" ]
+# ryzen убран с панели — пресеты CPU переключаются плиткой в Control Center
+
+[[bar.default.capsule_group]]       # система: CPU, RAM, температура, ватты (CPU+GPU)
+id = "sys"
+members = [ "cpu", "ram", "temp", "power" ]
+opacity = 0.0
+padding = 0.0
+widget_spacing = 10
+
+[[bar.default.capsule_group]]       # ввод: буфер обмена, раскладка
+id = "input"
+members = [ "clipboard", "keyboard_layout" ]
+opacity = 0.0
+padding = 0.0
+widget_spacing = 10
+
+[[bar.default.capsule_group]]       # звук, батарея, сеть
+id = "hw"
+members = [ "volume", "battery", "network" ]
+opacity = 0.0
+padding = 0.0
+widget_spacing = 10
+
+[[bar.default.capsule_group]]       # оболочка: уведомления, центр управления
+id = "shell"
+members = [ "notifications", "control-center" ]
+opacity = 0.0
+padding = 0.0
+widget_spacing = 10
+
+[widget.clock]
+format = "{:%-I:%M %p}"          # 12-часовой формат с AM/PM
+tooltip_format = "{:%A, %d %B %Y}"
+
+[widget.workspaces]
+# 10 кружков без цифр (столы 1–10 постоянные — rules/workspace_rules.lua в Hyprland)
+show_labels        = false
+pill_scale         = 0.5
+active_pill_size   = 3.0
+inactive_pill_size = 1.0
+focused_color      = "primary"
+occupied_color     = "secondary"
+empty_color        = "outline_variant"
+change_color_on_hover = false
+
+[widget.network]
+show_label = false                 # только значок: Wi-Fi / проводная / нет сети
+
+[widget.power]
+type = "local/power_draw:widget"   # плагин ~/.local/share/noctalia/plugins/power_draw
+
+[brightness]
+enable_ddcutil = true          # яркость внешнего монитора по DDC/CI (v4: enableDdcSupport)
+
+[dock]
+enabled = false                 # v4: dock.enabled = false
+
+[location]
+auto_locate = false
+address = ""                    # set your city for weather (e.g. "Berlin")
+
+[weather]
+enabled = true
+effects = true
+unit = "metric"
+
+[theme]
+mode = "dark"
+source = "custom"
+custom_palette = "AncientAliens"   # ~/.config/noctalia/palettes/AncientAliens.json (прошлая: GitHubDark)
+
+    [theme.templates]
+    # Из палитры GitHubDark красится только ghostty -> ~/.config/ghostty/themes/noctalia
+    # GTK/Qt/KDE — статичная тема Colloid (исходники в ~/rice/themes/), noctalia их не трогает.
+    # Бэкап Catppuccin: ~/.config/theme-backup-catppuccin-20261126/
+    builtin_ids = [ "ghostty" ]
+
+[control_center]
+# порядок кнопок как в v4 (PowerProfile убран — вместо него кнопка ryzen-profile на панели)
+shortcuts = [
+    { type = "wifi" },
+    { type = "bluetooth" },
+    { type = "wallpaper" },
+    { type = "notification" },
+    { type = "local/ryzen_profile:shortcut" },   # вместо caffeine — пресеты CPU
+    { type = "nightlight" },
+]
+
+# Кнопка пресетов CPU (ryzen-profile): ЛКМ — следующий, ПКМ — предыдущий
+[plugins]
+enabled = [ "local/ryzen_profile", "local/power_draw" ]
+
+[widget.ryzen]
+type = "local/ryzen_profile:widget"

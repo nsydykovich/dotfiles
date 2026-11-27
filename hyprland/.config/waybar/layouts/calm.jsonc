@@ -1,0 +1,226 @@
+// Waybar «calm» — минимум на виду, подробности по запросу. Сгенерирован; иконки — Material Design (U+F0000+).
+// Рабочие столы — 10 кружков; числа у CPU/RAM/темп./батареи появляются только при превышении порогов, остальное — в подсказках.
+// Связка с noctalia: scripts/noctalia-bridge.py (режим quiet прячет выключенное) и `noctalia msg ...`.
+{
+  "layer": "top",
+  "position": "top",
+  "height": 30,
+  "margin-top": 8,
+  "margin-left": 8,
+  "margin-right": 8,
+  "spacing": 0,
+  "modules-left": [
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "clock#date",
+    "custom/time",
+    "custom/dnd-dot"
+  ],
+  "modules-right": [
+    "tray",
+    "group/status",
+    "custom/control-center"
+  ],
+  "hyprland/workspaces": {
+    "format": "",
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": [],
+      "10": []
+    },
+    "on-click": "activate",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1"
+  },
+  "custom/dnd-dot": {
+    "exec": "~/.config/waybar/scripts/noctalia-bridge.py dnd quiet",
+    "return-type": "json",
+    "interval": 5,
+    "signal": 10,
+    "on-click": "noctalia msg panel-toggle control-center notifications",
+    "on-click-right": "~/.config/waybar/scripts/noctalia-bridge.py dnd toggle"
+  },
+  "tray": {
+    "icon-size": 14,
+    "spacing": 10
+  },
+  "group/status": {
+    "orientation": "horizontal",
+    "modules": [
+      "cpu",
+      "memory",
+      "temperature",
+      "custom/nc-caffeine",
+      "custom/nc-night",
+      "custom/nc-wifi",
+      "custom/nc-bluetooth",
+      "hyprland/language",
+      "pulseaudio",
+      "backlight",
+      "battery"
+    ]
+  },
+  "cpu": {
+    "interval": 3,
+    "states": {
+      "high": 70
+    },
+    "format": "",
+    "format-high": "<span color='#f0c674'>󰘚</span>  {usage}%",
+    "tooltip": true,
+    "on-click": "noctalia msg panel-toggle control-center system"
+  },
+  "memory": {
+    "interval": 5,
+    "states": {
+      "high": 85
+    },
+    "format": "",
+    "format-high": "<span color='#f0c674'>󰍛</span>  {percentage}%",
+    "tooltip-format": "RAM {used:0.1f} / {total:0.1f} GiB",
+    "on-click": "noctalia msg panel-toggle control-center system"
+  },
+  "temperature": {
+    "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
+    "input-filename": "temp1_input",
+    "critical-threshold": 80,
+    "format": "",
+    "format-critical": "<span color='#e8828a'>󰔏</span>  {temperatureC}°",
+    "tooltip-format": "CPU (Tctl): {temperatureC}°C"
+  },
+  "custom/nc-caffeine": {
+    "exec": "~/.config/waybar/scripts/noctalia-bridge.py caffeine quiet",
+    "return-type": "json",
+    "interval": 5,
+    "signal": 10,
+    "on-click": "~/.config/waybar/scripts/noctalia-bridge.py caffeine toggle"
+  },
+  "custom/nc-night": {
+    "exec": "~/.config/waybar/scripts/noctalia-bridge.py night quiet",
+    "return-type": "json",
+    "interval": 30,
+    "signal": 10,
+    "on-click": "~/.config/waybar/scripts/noctalia-bridge.py night toggle"
+  },
+  "custom/nc-wifi": {
+    "exec": "~/.config/waybar/scripts/noctalia-bridge.py wifi",
+    "return-type": "json",
+    "interval": 5,
+    "signal": 10,
+    "on-click": "noctalia msg panel-toggle control-center network",
+    "on-click-right": "~/.config/waybar/scripts/noctalia-bridge.py wifi toggle"
+  },
+  "custom/nc-bluetooth": {
+    "exec": "~/.config/waybar/scripts/noctalia-bridge.py bluetooth quiet",
+    "return-type": "json",
+    "interval": 5,
+    "signal": 10,
+    "on-click": "noctalia msg panel-toggle control-center bluetooth",
+    "on-click-right": "~/.config/waybar/scripts/noctalia-bridge.py bluetooth toggle"
+  },
+  "hyprland/language": {
+    "format": "{short}",
+    "on-click": "noctalia msg keyboard-layout-cycle"
+  },
+  "pulseaudio": {
+    "format": "<span color='#9fd8a8'>{icon}</span>",
+    "format-muted": "<span color='#e8828a'>󰝟</span>",
+    "format-icons": {
+      "headphone": "󰋋",
+      "default": [
+        "󰕿",
+        "󰖀",
+        "󰕾"
+      ]
+    },
+    "tooltip-format": "Volume {volume}%\n{desc}",
+    "on-click": "noctalia msg panel-toggle control-center audio",
+    "on-click-right": "noctalia msg volume-mute",
+    "on-scroll-up": "noctalia msg volume-up",
+    "on-scroll-down": "noctalia msg volume-down",
+    "smooth-scrolling-threshold": 1
+  },
+  "backlight": {
+    "device": "amdgpu_bl1",
+    "format": "<span color='#f0d58a'>{icon}</span>",
+    "format-icons": [
+      "󰃞",
+      "󰃟",
+      "󰃠"
+    ],
+    "tooltip-format": "Brightness {percent}%",
+    "on-click": "noctalia msg panel-toggle control-center monitor",
+    "on-scroll-up": "noctalia msg brightness-up",
+    "on-scroll-down": "noctalia msg brightness-down",
+    "smooth-scrolling-threshold": 1
+  },
+  "battery": {
+    "bat": "BAT1",
+    "interval": 30,
+    "states": {
+      "low": 30,
+      "critical": 12
+    },
+    "format": "<span color='#9fd8a8'>{icon}</span>",
+    "format-low": "<span color='#f0c674'>{icon}</span>  {capacity}%",
+    "format-critical": "<span color='#e8828a'>{icon}</span>  {capacity}%",
+    "format-charging": "<span color='#9fd8a8'>󰂄</span>",
+    "format-plugged": "<span color='#9fd8a8'>󰚥</span>",
+    "format-icons": [
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
+    "tooltip-format": "Battery {capacity}%\n{timeTo}",
+    "on-click": "noctalia msg panel-toggle control-center power"
+  },
+  "custom/control-center": {
+    "format": "󱕂",
+    "tooltip-format": "Control Center\nRight-click: session · Middle-click: Noctalia settings",
+    "on-click": "noctalia msg panel-toggle control-center",
+    "on-click-right": "noctalia msg panel-toggle session",
+    "on-click-middle": "noctalia msg settings-toggle"
+  },
+  "clock#date": {
+    "format": "{:L%A, %d %B}",
+    "locale": "en_US.UTF-8",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+      "mode": "month",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#aad5f0'><b>{}</b></span>",
+        "weekdays": "<span color='#8aa3b8'>{}</span>",
+        "today": "<span background='#aad5f0' color='#09111c'><b> {} </b></span>",
+        "days": "<span color='#d6e6f2'>{}</span>"
+      }
+    },
+    "actions": {
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    },
+    "on-click": "noctalia msg panel-toggle control-center calendar"
+  },
+  "custom/time": {
+    "exec": "LC_TIME=C date '+%I:%M %p'",
+    "interval": 5,
+    "tooltip": false,
+    "on-click": "noctalia msg panel-toggle control-center calendar"
+  }
+}

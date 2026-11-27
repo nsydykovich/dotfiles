@@ -1,0 +1,75 @@
+/* Тема «Капсулы» (исходная) — палитра AncientAliens (см. ~/rice/themes/README.md)
+   bg #09111c · cards #13202d · border #2d485b · text #d6e6f2 · accent #aad5f0 · selection #3e6f92 */
+@import url("_palette.css");
+
+* {
+  font-family: "Roboto", "CaskaydiaCove Nerd Font";
+  font-size: 13px;
+  min-height: 0;
+  border: none;
+}
+
+window#waybar {
+  background: @bg;
+  color: @fg;
+  border-radius: 14px;
+}
+
+tooltip {
+  background: @card;
+  border: 1px solid @border;
+  border-radius: 10px;
+}
+tooltip label { color: @fg; }
+
+/* капсулы модулей */
+.modules-left > widget > *,
+.modules-center > widget > *,
+.modules-right > widget > * {
+  background: @card;
+  border-radius: 10px;
+  padding: 0 10px;
+  margin: 4px 0;
+}
+.modules-left  > widget:first-child > * { margin-left: 4px; }
+.modules-right > widget:last-child  > * { margin-right: 4px; }
+
+#custom-launcher, #custom-control-center {
+  color: @accent;
+  font-size: 15px;
+  padding: 0 12px;
+}
+
+#workspaces { padding: 0 4px; }
+#workspaces button {
+  color: @muted;
+  background: transparent;
+  border-radius: 8px;
+  padding: 0 7px;
+  margin: 3px 1px;
+  transition: all 150ms ease;
+}
+#workspaces button:hover { background: @border; color: @fg; box-shadow: none; }
+#workspaces button.active { background: @accent; color: #09111c; }
+#workspaces button.urgent { background: @crit; color: #09111c; }
+
+#window { color: @muted; }
+window#waybar.empty #window { background: transparent; }
+
+#clock { color: @accent; font-weight: bold; }
+
+#temperature.critical,
+#battery.critical:not(.charging) { color: @crit; }
+#battery.warning:not(.charging)  { color: @warn; }
+#battery.charging, #battery.plugged { color: @accent; }
+#pulseaudio.muted { color: @muted; }
+
+#custom-ryzen.eco         { color: #9fd8a8; }
+#custom-ryzen.performance { color: @accent; }
+#custom-notifications.dnd { color: @muted; }
+
+#tray > .needs-attention { background: @crit; }
+
+.modules-left > widget > *:hover,
+.modules-right > widget > *:hover { background: @border; }
+#workspaces:hover { background: @card; }

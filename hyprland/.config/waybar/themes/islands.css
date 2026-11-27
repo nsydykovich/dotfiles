@@ -1,0 +1,34 @@
+/* Тема «Острова»: фона у панели нет, левая, центральная и правая группы — отдельные плашки */
+@import url("_palette.css");
+
+* { font-family: "Roboto", "CaskaydiaCove Nerd Font"; font-size: 13px; min-height: 0; border: none; }
+
+window#waybar { background: transparent; color: @fg; }
+tooltip { background: @card; border: 1px solid @border; border-radius: 10px; }
+tooltip label { color: @fg; }
+
+.modules-left, .modules-center, .modules-right {
+  background: @bg;
+  border: 1px solid @border;
+  border-radius: 14px;
+  padding: 0 6px;
+}
+.modules-left > widget > *, .modules-center > widget > *, .modules-right > widget > * {
+  padding: 0 9px; margin: 3px 0; border-radius: 9px;
+}
+.modules-left > widget > *:hover, .modules-right > widget > *:hover { background: @card; }
+
+#custom-launcher, #custom-control-center { color: @accent; font-size: 15px; }
+#workspaces button { color: @muted; background: transparent; border-radius: 8px; padding: 0 7px; margin: 3px 1px; }
+#workspaces button:hover { background: @card; color: @fg; box-shadow: none; }
+#workspaces button.active { background: @accent; color: @bg_solid; }
+#workspaces button.urgent { background: @crit; color: @bg_solid; }
+#workspaces:hover { background: transparent; }
+#window { color: @muted; }
+#clock { color: @accent; font-weight: bold; padding: 0 14px; }
+
+#temperature.critical, #battery.critical:not(.charging) { color: @crit; }
+#battery.warning:not(.charging) { color: @warn; }
+#battery.charging, #battery.plugged { color: @accent; }
+#pulseaudio.muted, #custom-notifications.dnd { color: @muted; }
+#tray > .needs-attention { background: @crit; }

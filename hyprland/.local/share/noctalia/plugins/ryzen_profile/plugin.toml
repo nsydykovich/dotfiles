@@ -1,0 +1,15 @@
+id          = "local/ryzen_profile"
+name        = "Ryzen Profile"
+version     = "1.0.0"
+plugin_api  = 57
+author      = "local"
+description = "Пресеты мощности/частоты CPU (ryzen-profile): ECO / BALANCED / PERFORMANCE"
+
+[[widget]]
+id    = "widget"
+entry = "widget.luau"
+
+# Плитка в центре управления (вместо Caffeine)
+[[shortcut]]
+id    = "shortcut"
+entry = "shortcut.luau"

@@ -1,0 +1,17 @@
+hl.on("hyprland.start", function()
+    hl.exec_cmd("/usr/lib/pam_kwallet_init")  -- отдаёт kwalletd6 пароль из PAM (greetd) -> кошелёк открывается сам
+    hl.exec_cmd("kwalletd6")
+    hl.exec_cmd("kded6")
+    -- hl.exec_cmd("nm-applet")
+    hl.exec_cmd("flameshot")
+    hl.exec_cmd("awww-daemon")
+    -- hl.exec_cmd("warp-taskbar")
+    hl.exec_cmd("noctalia")
+    hl.exec_cmd("waybar")  -- панель waybar (раскладка main); бар noctalia выключен: [bar.default] enabled = false
+    hl.exec_cmd("zapfast --start-hidden")
+    hl.exec_cmd("xhost +si:localuser:root")
+    hl.exec_cmd("wl-paste --watch cliphist store")
+    hl.exec_cmd("echo 'Xft.dpi: 120' | xrdb -merge")
+    hl.exec_cmd("/usr/lib/polkit-kde-authentication-agent-1")
+    hl.exec_cmd(os.getenv("HOME") .. "/.config/hypr/scripts/monitor-rotate.sh")
+end)
