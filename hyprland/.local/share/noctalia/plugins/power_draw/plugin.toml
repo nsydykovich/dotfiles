@@ -1,0 +1,10 @@
+id          = "local/power_draw"
+name        = "Power Draw"
+version     = "1.0.0"
+plugin_api  = 57
+author      = "local"
+description = "Package power (CPU + iGPU) from the amdgpu PPT sensor, in watts"
+
+[[widget]]
+id    = "widget"
+entry = "widget.luau"

@@ -1,0 +1,60 @@
+/* Тема «calm» для layouts/calm.jsonc: три тонких островка без рамок, полупрозрачная заливка + blur Hyprland.
+   Цвет — только у иконок (задан в конфиге через <span>), у активного стола и у предупреждений. */
+@import url("_palette.css");
+@define-color island rgba(9, 17, 28, 0.70);
+
+* { font-family: "Roboto", "CaskaydiaCove Nerd Font"; font-size: 13px; min-height: 0; border: none; }
+
+window#waybar { background: transparent; color: @fg; }
+tooltip { background: rgba(19, 32, 45, 0.97); border: 1px solid @border; border-radius: 12px; }
+tooltip label { color: @fg; padding: 4px 6px; }
+
+.modules-left, .modules-center, .modules-right {
+  background: @island;
+  border-radius: 15px;
+  padding: 0 6px;
+}
+.modules-left > widget > *, .modules-center > widget > *, .modules-right > widget > * {
+  background: transparent; padding: 0 8px; border-radius: 10px; transition: all 150ms ease;
+}
+.modules-left > widget > *:hover, .modules-center > widget > *:hover, .modules-right > widget > *:hover {
+  background: alpha(@fg, 0.06);
+}
+
+/* ---- кружки рабочих столов ---- */
+#workspaces { padding: 0 4px; }
+#workspaces:hover { background: transparent; }
+#workspaces button {
+  min-width: 8px; min-height: 8px; padding: 0; margin: 11px 4px;
+  font-size: 1px;
+  border-radius: 99px; background: alpha(@muted, 0.55);
+  transition: all 300ms cubic-bezier(.2, .8, .2, 1);
+}
+#workspaces button label { padding: 0; margin: 0; font-size: 1px; min-height: 0; }
+#workspaces button.empty  { background: alpha(@muted, 0.22); }
+#workspaces button:hover  { background: @fg; box-shadow: none; }
+#workspaces button.active { min-width: 24px; background: @accent; }
+#workspaces button.urgent { background: @crit; }
+
+/* ---- центр ---- */
+#clock.date { color: @muted; padding: 0 8px 0 12px; }
+#custom-time { color: @fg; font-weight: bold; padding: 0 12px 0 4px; }
+#custom-dnd-dot { color: @warn; }
+
+/* ---- статус: внутри группы — плоские иконки с небольшим шагом ---- */
+/* отступы — на самих подписях: у скрытого модуля (пустой текст) подпись не рисуется и места не занимает */
+#status > widget > * { padding: 0; font-size: 14px; }
+#status label { padding: 0 7px; border-radius: 8px; }
+#status label:hover { background: alpha(@fg, 0.06); }
+/* цвета переключателей noctalia — через CSS: span в format мешает waybar прятать пустой модуль */
+#custom-nc-wifi      { color: #7fd1c7; }
+#custom-nc-wifi.off  { color: alpha(@muted, 0.6); }
+#custom-nc-bluetooth { color: #8ab4f8; }
+#custom-nc-caffeine  { color: #d9a77b; }
+#custom-nc-night     { color: #f0b47a; }
+#language { color: @muted; font-size: 12px; font-weight: bold; }
+#tray { padding: 0 7px 0 6px; }
+#custom-control-center { color: @accent; font-size: 15px; padding: 0 9px 0 2px; }
+
+@keyframes pulse { to { color: alpha(@crit, 0.35); } }
+#battery.critical:not(.charging) { animation: pulse 0.9s ease-in-out infinite alternate; }

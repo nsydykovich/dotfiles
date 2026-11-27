@@ -1,0 +1,31 @@
+/* Тема «Подчёркивание»: плоская панель без капсул, активный стол и группы отмечены полоской снизу */
+@import url("_palette.css");
+
+* { font-family: "Roboto", "CaskaydiaCove Nerd Font"; font-size: 13px; min-height: 0; border: none; border-radius: 0; }
+
+window#waybar { background: @bg; color: @fg; border-radius: 14px; }
+tooltip { background: @card; border: 1px solid @border; border-radius: 10px; }
+tooltip label { color: @fg; }
+
+.modules-left > widget > *, .modules-center > widget > *, .modules-right > widget > * {
+  padding: 0 10px;
+  margin: 0 2px;
+  box-shadow: inset 0 -2px @border;
+}
+.modules-left > widget > *:hover, .modules-right > widget > *:hover { box-shadow: inset 0 -2px @accent; }
+
+#custom-launcher, #custom-control-center { color: @accent; font-size: 15px; box-shadow: none; padding: 0 14px; }
+#workspaces { box-shadow: none; }
+#workspaces button { color: @muted; background: transparent; padding: 0 8px; box-shadow: none; }
+#workspaces button:hover { color: @fg; background: alpha(@fg, 0.06); box-shadow: inset 0 -2px @muted; }
+#workspaces button.active { color: @accent; box-shadow: inset 0 -3px @accent; }
+#workspaces button.urgent { color: @crit; box-shadow: inset 0 -3px @crit; }
+#window { color: @muted; box-shadow: none; }
+#clock { color: @accent; font-weight: bold; box-shadow: inset 0 -2px @accent; }
+#tray { box-shadow: none; }
+
+#cpu, #memory, #temperature { box-shadow: inset 0 -2px #6fa3c7; }
+#pulseaudio, #backlight, #hyprland-language { box-shadow: inset 0 -2px #9fd8a8; }
+#battery { box-shadow: inset 0 -2px @warn; }
+#temperature.critical, #battery.critical:not(.charging) { color: @crit; box-shadow: inset 0 -2px @crit; }
+#pulseaudio.muted, #custom-notifications.dnd { color: @muted; }

@@ -1,0 +1,54 @@
+/* Тема «main» для layouts/main.jsonc.
+   Сетка (плотная): иконка→текст 7px (2 пробела), внутри группы 8px, между группами 16px, край островка 12px.
+   Иконки — span в конфиге (Nerd Font Mono, цвет accent), цифры — табличные (tnum), чтобы не прыгали. */
+@import url("_palette.css");
+@define-color island rgba(9, 17, 28, 0.72);
+
+* {
+  font-family: "Roboto", "CaskaydiaCove Nerd Font Mono";
+  font-size: 13px;
+  font-feature-settings: "tnum";
+  min-height: 0; border: none; box-shadow: none;
+}
+
+window#waybar { background: @island; color: @fg; border-radius: 15px; }
+tooltip { background: rgba(19, 32, 45, 0.97); border: 1px solid @border; border-radius: 12px; }
+tooltip label { color: @fg; padding: 4px 6px; }
+
+/* плотная сетка: верхний уровень 8px с каждой стороны -> 16px между блоками/группами;
+   +4px у краёв островка -> 12px от края */
+.modules-left > widget > *, .modules-center > widget > *, .modules-right > widget > * {
+  padding: 0 8px; margin: 0; background: transparent;
+}
+.modules-left  { padding-left: 4px; }
+.modules-right { padding-right: 4px; }
+/* группы: 4px + 4px у детей = 8px у краёв группы, 8px между детьми */
+#sys, #input, #hw, #shell { padding: 0 4px; }
+#sys > widget > *, #input > widget > *, #hw > widget > *, #shell > widget > * { padding: 0 4px; }
+
+/* разделителей нет — группы отделены только 24px-промежутком (внутри группы 12px) */
+
+/* ---- кружки: вплотную к кнопке меню ---- */
+#custom-launcher { padding-right: 2px; }
+#workspaces { padding: 0 8px 0 0; }
+#workspaces button {
+  min-width: 8px; min-height: 8px; padding: 0; margin: 12px 4px;
+  font-size: 1px; border-radius: 99px;
+  background: alpha(@fg, 0.75);
+  transition: all 250ms cubic-bezier(.2, .8, .2, 1);
+}
+#workspaces button label { padding: 0; margin: 0; font-size: 1px; min-height: 0; }
+/* занятые — светлые, пустые — едва видны, активный — акцентная пилюля */
+#workspaces button, #workspaces button:hover { background: alpha(@fg, 0.75); }
+#workspaces button.empty, #workspaces button.empty:hover { background: alpha(@muted, 0.22); }
+#workspaces button.active, #workspaces button.active:hover { min-width: 24px; background: @accent; }
+#workspaces button.urgent { background: @crit; }
+
+#window { color: @muted; }
+#custom-time { font-weight: bold; }
+
+#cpu.high, #temperature.critical, #custom-power.high { color: @warn; }
+#battery.warning:not(.charging) { color: @warn; }
+#battery.critical:not(.charging) { color: @crit; }
+#pulseaudio.muted { color: @muted; }
+#network.disconnected, #network.disabled, #network.linked { color: @muted; }

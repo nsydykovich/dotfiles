@@ -1,0 +1,112 @@
+/* Тема «aliens» для раскладки layouts/aliens.jsonc.
+   Фона у панели нет; каждый модуль или группа — полупрозрачный островок (под ним blur от Hyprland,
+   см. ~/.config/hypr/markv1/rules/layer_rules.lua). Палитра — themes/_palette.css. */
+@import url("_palette.css");
+@define-color island rgba(9, 17, 28, 0.72);
+@define-color glow   rgba(170, 213, 240, 0.16);
+
+* { font-family: "Roboto", "CaskaydiaCove Nerd Font"; font-size: 13px; min-height: 0; border: none; }
+
+window#waybar { background: transparent; color: @fg; }
+
+tooltip { background: rgba(19, 32, 45, 0.97); border: 1px solid @border; border-radius: 12px; }
+tooltip label { color: @fg; padding: 4px 6px; }
+
+/* ---- три островка: левая, центральная и правая части ---- */
+.modules-left, .modules-center, .modules-right {
+  background: @island;
+  border: 1px solid alpha(@border, 0.9);
+  border-radius: 12px;
+  padding: 0 4px;
+  transition: all 200ms ease;
+}
+.modules-left:hover, .modules-center:hover, .modules-right:hover {
+  border-color: alpha(@accent, 0.7);
+  box-shadow: inset 0 0 14px @glow;
+}
+/* модули внутри островка — плоские, подсветка при наведении */
+.modules-left > widget > *,
+.modules-center > widget > *,
+.modules-right > widget > * {
+  background: transparent;
+  border-radius: 8px;
+  padding: 0 9px;
+  margin: 4px 0;
+  transition: all 150ms ease;
+}
+.modules-left > widget > *:hover,
+.modules-center > widget > *:hover,
+.modules-right > widget > *:hover { background: alpha(@fg, 0.07); }
+
+/* группы внутри островка отделены тонкой чертой */
+#stats, #traybox, #toggles, #sys { border-left: 1px solid alpha(@border, 0.8); border-radius: 0; margin: 4px 0; padding: 0 4px; }
+#stats:hover, #traybox:hover, #toggles:hover, #sys:hover { background: transparent; }
+
+/* ---- содержимое групп: плоское, с узким шагом ---- */
+#hub > widget > *, #stats > widget > *, #traybox > widget > *,
+#toggles > widget > *, #sys > widget > * {
+  background: transparent; border: none; box-shadow: none;
+  padding: 0 7px; margin: 0; border-radius: 8px;
+  transition: all 150ms ease;
+}
+#hub > widget > *:hover, #stats > widget > *:hover, #traybox > widget > *:hover,
+#toggles > widget > *:hover, #sys > widget > *:hover { background: alpha(@fg, 0.07); }
+
+/* ---- лаунчер и центр управления ---- */
+#custom-launcher { color: @accent; font-size: 15px; padding: 0 11px 0 6px; }
+#custom-control-center { color: @accent; font-size: 15px; padding: 0 11px 0 6px; }
+
+/* ---- рабочие столы: номер + иконки окон, активный — акцентная пилюля ---- */
+#workspaces { padding: 0; margin: 0; }
+#workspaces:hover { background: transparent; }
+#workspaces button {
+  color: @muted; background: transparent; border-radius: 9px;
+  padding: 0 8px; margin: 4px 1px;
+  transition: all 250ms cubic-bezier(.2, .8, .2, 1);
+}
+#workspaces button:hover { background: alpha(@fg, 0.08); color: @fg; box-shadow: none; }
+#workspaces button.active {
+  background: linear-gradient(90deg, @accent, #8cc0e4);
+  color: @bg_solid; padding: 0 12px;
+}
+#workspaces button.urgent { background: @crit; color: @bg_solid; }
+#workspaces button.empty { color: alpha(@muted, 0.6); }
+
+#window { color: @muted; }
+
+
+/* ---- центр: музыка и часы+погода ---- */
+#mpris { color: @accent; font-style: normal; }
+#mpris.paused { color: @muted; }
+#clock { color: @fg; font-weight: bold; font-size: 14px; }
+#custom-weather { color: @accent; }
+#custom-weather.cold { color: #b9dcf5; }
+#custom-weather.hot  { color: @warn; }
+
+/* ---- выдвижные группы ---- */
+#cpu { color: @fg; }
+#cpu.busy { color: @warn; }
+#cpu.hot  { color: @crit; }
+.stats-child { color: @muted; }
+#temperature.critical { color: @crit; }
+#custom-trayhandle { color: @muted; font-size: 14px; }
+#tray > .needs-attention { background: alpha(@crit, 0.4); }
+
+/* ---- переключатели noctalia: выкл — приглушены, вкл — акцент ---- */
+#custom-nc-wifi, #custom-nc-bluetooth, #custom-nc-caffeine, #custom-nc-night, #custom-nc-dnd { font-size: 14px; }
+.off { color: alpha(@muted, 0.75); }
+.on  { color: @accent; }
+#custom-nc-dnd.on      { color: @warn; }
+#custom-nc-night.on    { color: #f0b47a; }
+#custom-nc-caffeine.on { color: #d9a77b; }
+
+/* ---- система ---- */
+#language { color: @muted; font-weight: bold; }
+#pulseaudio.muted { color: @muted; }
+#battery.charging, #battery.plugged { color: #9fd8a8; }
+#battery.warning:not(.charging) { color: @warn; }
+@keyframes blink { to { color: @bg_solid; background: @crit; } }
+#battery.critical:not(.charging) {
+  color: @crit;
+  animation: blink 0.8s steps(12) infinite alternate;
+}

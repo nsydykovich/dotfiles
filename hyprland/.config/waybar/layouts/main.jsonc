@@ -1,0 +1,201 @@
+// Waybar «main»: один островок, модули по группам. Сгенерирован; иконки — Material Design (U+F0000+),
+// рисуются моноширинным Nerd Font Mono — одинаковая ширина, одинаковый шаг до текста.
+{
+  "layer": "top",
+  "position": "top",
+  "height": 32,
+  "margin-top": 8,
+  "margin-left": 8,
+  "margin-right": 8,
+  "spacing": 0,
+  "modules-left": [
+    "custom/launcher",
+    "hyprland/workspaces",
+    "group/sys",
+    "hyprland/window"
+  ],
+  "modules-center": [
+    "custom/time"
+  ],
+  "modules-right": [
+    "tray",
+    "group/input",
+    "group/hw",
+    "group/shell"
+  ],
+  "custom/launcher": {
+    "format": "<span font_family='CaskaydiaCove Nerd Font Mono' size='14pt' foreground='#aad5f0' rise='-1pt'>󰣇</span>",
+    "tooltip-format": "Applications",
+    "on-click": "noctalia msg panel-toggle launcher"
+  },
+  "hyprland/workspaces": {
+    "format": "",
+    "on-click": "activate",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1"
+  },
+  "group/sys": {
+    "orientation": "horizontal",
+    "modules": [
+      "cpu",
+      "memory",
+      "temperature",
+      "custom/power"
+    ]
+  },
+  "cpu": {
+    "interval": 2,
+    "format": "<span font_family='CaskaydiaCove Nerd Font Mono' size='13pt' foreground='#aad5f0' rise='-1pt'>󰻠</span>  {usage}%",
+    "states": {
+      "high": 80
+    },
+    "on-click": "noctalia msg panel-toggle control-center system"
+  },
+  "memory": {
+    "interval": 3,
+    "format": "<span font_family='CaskaydiaCove Nerd Font Mono' size='13pt' foreground='#aad5f0' rise='-1pt'>󰍛</span>  {used:0.1f} GiB",
+    "tooltip-format": "RAM {used:0.1f} / {total:0.1f} GiB ({percentage}%)",
+    "on-click": "noctalia msg panel-toggle control-center system"
+  },
+  "temperature": {
+    "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
+    "input-filename": "temp1_input",
+    "critical-threshold": 85,
+    "format": "<span font_family='CaskaydiaCove Nerd Font Mono' size='13pt' foreground='#aad5f0' rise='-1pt'>󰔏</span>  {temperatureC}°C",
+    "tooltip-format": "CPU (Tctl): {temperatureC}°C",
+    "on-click": "noctalia msg panel-toggle control-center system"
+  },
+  "custom/power": {
+    "exec": "~/.config/waybar/scripts/power.py",
+    "return-type": "json",
+    "interval": 2,
+    "format": "<span font_family='CaskaydiaCove Nerd Font Mono' size='13pt' foreground='#aad5f0' rise='-1pt'>󱐋</span>  {}",
+    "on-click": "noctalia msg panel-toggle control-center system"
+  },
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 48,
+    "separate-outputs": true
+  },
+  "custom/time": {
+    "exec": "LC_TIME=C date '+{\"text\":\"%-I:%M %p\",\"tooltip\":\"%A, %B %-d, %Y\"}'",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "noctalia msg panel-toggle control-center calendar"
+  },
+  "tray": {
+    "icon-size": 15,
+    "spacing": 8
+  },
+  "group/input": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/clipboard",
+      "custom/kblayout"
+    ]
+  },
+  "custom/clipboard": {
+    "format": "<span font_family='CaskaydiaCove Nerd Font Mono' size='13pt' foreground='#aad5f0' rise='-1pt'>󰅌</span>",
+    "tooltip-format": "Clipboard history",
+    "on-click": "noctalia msg panel-toggle clipboard"
+  },
+  "group/hw": {
+    "orientation": "horizontal",
+    "modules": [
+      "pulseaudio",
+      "battery",
+      "network"
+    ]
+  },
+  "pulseaudio": {
+    "format": "<span font_family='CaskaydiaCove Nerd Font Mono' size='13pt' foreground='#aad5f0' rise='-1pt'>{icon}</span>  {volume}%",
+    "format-muted": "<span font_family='CaskaydiaCove Nerd Font Mono' size='13pt' foreground='#aad5f0' rise='-1pt'>󰖁</span>  {volume}%",
+    "format-icons": {
+      "headphone": "󰋋",
+      "default": [
+        "󰕿",
+        "󰖀",
+        "󰕾"
+      ]
+    },
+    "tooltip-format": "{desc}",
+    "on-click": "noctalia msg panel-toggle control-center audio",
+    "on-click-right": "noctalia msg volume-mute",
+    "on-scroll-up": "noctalia msg volume-up",
+    "on-scroll-down": "noctalia msg volume-down",
+    "smooth-scrolling-threshold": 1
+  },
+  "battery": {
+    "bat": "BAT1",
+    "interval": 30,
+    "states": {
+      "warning": 25,
+      "critical": 10
+    },
+    "format": "<span font_family='CaskaydiaCove Nerd Font Mono' size='13pt' foreground='#aad5f0' rise='-1pt'>{icon}</span>  {capacity}%",
+    "format-charging": "<span font_family='CaskaydiaCove Nerd Font Mono' size='13pt' foreground='#aad5f0' rise='-1pt'>󰂄</span>  {capacity}%",
+    "format-plugged": "<span font_family='CaskaydiaCove Nerd Font Mono' size='13pt' foreground='#aad5f0' rise='-1pt'>󰂄</span>  {capacity}%",
+    "format-icons": [
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
+    "tooltip-format": "{timeTo}",
+    "on-click": "noctalia msg panel-toggle control-center power"
+  },
+  "network": {
+    "interval": 5,
+    "format-wifi": "<span font_family='CaskaydiaCove Nerd Font Mono' size='13pt' foreground='#aad5f0' rise='-1pt'>󰖩</span>  {essid}",
+    "format-ethernet": "<span font_family='CaskaydiaCove Nerd Font Mono' size='13pt' foreground='#aad5f0' rise='-1pt'>󰈀</span>  Ethernet",
+    "format-linked": "<span font_family='CaskaydiaCove Nerd Font Mono' size='13pt' foreground='#aad5f0' rise='-1pt'>󰌙</span>  No IP",
+    "format-disconnected": "<span font_family='CaskaydiaCove Nerd Font Mono' size='13pt' foreground='#aad5f0' rise='-1pt'>󰖪</span>  Offline",
+    "format-disabled": "<span font_family='CaskaydiaCove Nerd Font Mono' size='13pt' foreground='#aad5f0' rise='-1pt'>󰖪</span>  Wi-Fi off",
+    "tooltip-format-wifi": "{essid} · {signalStrength}%\n{ipaddr}",
+    "tooltip-format-ethernet": "{ifname} · {ipaddr}",
+    "tooltip-format-disconnected": "No connection",
+    "on-click": "noctalia msg panel-toggle control-center network",
+    "max-length": 20
+  },
+  "group/shell": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/notifications",
+      "custom/control-center"
+    ]
+  },
+  "custom/notifications": {
+    "exec": "~/.config/waybar/scripts/noctalia-bridge.py dnd",
+    "return-type": "json",
+    "interval": 5,
+    "signal": 10,
+    "format": "<span font_family='CaskaydiaCove Nerd Font Mono' size='13pt' foreground='#aad5f0' rise='-1pt'>{icon}</span>",
+    "on-click": "noctalia msg panel-toggle control-center notifications",
+    "on-click-right": "~/.config/waybar/scripts/noctalia-bridge.py dnd toggle",
+    "format-icons": {
+      "off": "󰂜",
+      "on": "󰪑"
+    }
+  },
+  "custom/control-center": {
+    "format": "<span font_family='CaskaydiaCove Nerd Font Mono' size='13pt' foreground='#aad5f0' rise='-1pt'>󱕂</span>",
+    "tooltip-format": "Control Center\nRight-click: session · Middle-click: Noctalia settings",
+    "on-click": "noctalia msg panel-toggle control-center",
+    "on-click-right": "noctalia msg panel-toggle session",
+    "on-click-middle": "noctalia msg settings-toggle"
+  },
+  "custom/kblayout": {
+    "exec": "~/.config/waybar/scripts/kb-layout.py",
+    "return-type": "json",
+    "restart-interval": 2,
+    "format": "<span font_family='CaskaydiaCove Nerd Font Mono' size='13pt' foreground='#aad5f0' rise='-1pt'>󰥻</span>  {}",
+    "on-click": "noctalia msg keyboard-layout-cycle"
+  }
+}

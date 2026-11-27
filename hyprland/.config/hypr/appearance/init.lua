@@ -1,0 +1,5 @@
+require("appearance.general")
+require("appearance.decoration")
+require("appearance.animations")
+require("appearance.layouts")
+require("appearance.misc")

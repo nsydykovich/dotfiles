@@ -1,0 +1,1604 @@
+diff --git a/install.sh b/install.sh
+index a703a17..fe4eaf1 100755
+--- a/install.sh
++++ b/install.sh
+@@ -31,7 +31,7 @@ SASSC_OPT="-M -t expanded"
+ 
+ THEME_NAME=Colloid
+ THEME_VARIANTS=('' '-Purple' '-Pink' '-Red' '-Orange' '-Yellow' '-Green' '-Teal' '-Grey')
+-SCHEME_VARIANTS=('' '-Nord' '-Dracula' '-Gruvbox' '-Everforest' '-Catppuccin')
++SCHEME_VARIANTS=('' '-Nord' '-Dracula' '-Gruvbox' '-Everforest' '-Catppuccin' '-Aliens')
+ COLOR_VARIANTS=('' '-Light' '-Dark')
+ SIZE_VARIANTS=('' '-Compact')
+ 
+@@ -337,6 +337,12 @@ while [[ $# -gt 0 ]]; do
+       shift
+       for variant in $@; do
+         case "$variant" in
++          aliens)
++            colorscheme='true'
++            schemes+=("${SCHEME_VARIANTS[6]}")
++            echo -e "\nAncientAliens ColorScheme version! ..."
++            shift
++            ;;
+           nord)
+             colorscheme='true'
+             schemes+=("${SCHEME_VARIANTS[1]}")
+@@ -474,6 +480,9 @@ compact_size() {
+ color_schemes() {
+   if [[ "$scheme" != '' ]]; then
+     case "$scheme" in
++      -Aliens)
++        scheme_color='aliens'
++        ;;
+       -Nord)
+         scheme_color='nord'
+         ;;
+diff --git a/src/assets/gtk-2.0/assets-Aliens/checkbox-checked-active.png b/src/assets/gtk-2.0/assets-Aliens/checkbox-checked-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..2b8e4c677643d69353bb538c3014f152d11f9b60
+GIT binary patch
+literal 522
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLFfG6*#Fc@8fuZ4l
+z=&JwP4OdliZ}X`+3uy!j>4b>sM2H!LNm!(q7F{zbykcB<)wKAkNx@~4qASM5SB#3T
+z8W&wRF1l`1c-0srdrd!WFGyL@W#hst23bczDEqi!&PjuuQ${&wjB-zd^cG$=DZFf4
+zaM>6{UIH=lFBlhGf}x8r#-(}A-_;oy7z|5-{DK*nnAzA(Ev>Aq9l|4`qGRLY6DCfY
+zJay{gwd*(R+;#NKxog+&+`aeU!NZ52KY#i9?b}}ksboF|28JD;E{-7*l5-Ef4Qp}`
+zak%L1!}T+FnPWqrLS|>#z5h=?^=)9O+qK>1tj^;{Rl1K_C-%MUyj7^guP+^SZJvo)
+z$(ki*OVf4wEH4I21$y6lbDQ<qqJ0@R+cgC`tr+a@+*EkDOrW&ww1V?Z1;@Frp$GD2
+zFq-)k*15{=xXEjrGoxsFcUR!;gXt3jx?OY&wyo#vovBfL<mckRUypoVNP6b_9^Y-U
+vhd(N8o=uN;)_vudAD#!sg;tt;ej52dUC(@S@T@11ps4Y5^>bP0l+XkKG05F-
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/checkbox-checked-disabled.png b/src/assets/gtk-2.0/assets-Aliens/checkbox-checked-disabled.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..cb6f5f90b68d10d483014dbfb0cb7104a2a45557
+GIT binary patch
+literal 471
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLP#WM9;>rL5{~7-O
+zXK47Z-SFR`;l4w|f6Knd#xwsrG<>sb`DWAb-KOKaP17%{)-P7AzwDa6+O+?&Zv#o$
+zwfwee`EA|w-MaO=P4f@y)*oQ<t1XD})u#D}P0LrCmLIll-)!4{+O&MLZu(~13Su0w
+zovOgVz@T0d<QL4q$jHRT!NJKTBP%DTZ(v|(Y-wd>W9#VR>f!0_<Kyca5)v8~5m}Su
+zb&-LAVS}fOV~B+0+=F+cnjA#hF7~S_x*0VwEETNZ@co~@q4^=@f)`O$Gf$to@O|N#
+zIbwfiUOf5wrEa=fzsbqS8<|fcJxvSJ!>rUN8(y!wlc4?i@R|G|=GHTUJ3d@ECR*<J
+zjBC4ZbLL~N;;Anio$oN@1{v=-A+yu^2ybrCXMq&2Gj*S3!+W@9_8k1TH|bI8oz8>u
+zlh0*7i1ai)75U?e%CDp}@t2x!B}!L{-Py)bE6?@*%c}YwNv)r6SfU(2!R+bk=d#Wz
+Gp$P!R@WzDz
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/checkbox-checked-hover.png b/src/assets/gtk-2.0/assets-Aliens/checkbox-checked-hover.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..1e42e9b7595fabd6b0557c9c79639ca93f4d83b6
+GIT binary patch
+literal 522
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLFfG6*#Fc@8fuZ4l
+z=qeEMob><b-Cuhy{oZ-`_uk9@cU}3t{`~KVsXxP~d<&iYJ$&l-h$$d4Y})tGso%q<
+z{tBD&D|GUY@Tot-r~b-X_!GpK2I8j9|CuuHSK{2C3A2C3&;A)d>u3C|ACc2QC}Qf5
+zh^gNrr~ZhT_B{eD5<UF~nENAQ>W`@DKcm2c|LiPy7#J7~OM?7@8JL*a*i9|1tgIcv
+zBch^X<Kh!0PMSP*>f*KQH|*SX^vt<y*YDiD_u#?9ho3)x`TFhKUj?aTJ_ZJc9iA?Z
+zArg{v555g+au9L2=<UPxGk2L|LtjEhXW6~~Pd`1{z*4tsyUkgh$B&9MAGJ>Gd&&9S
+zVq*JrUfpbeDQT;)M?Nnlz0b~hq1n4aHTT<FuHwM>EpHBsbhyYi#J|g#P!QZ<b+~lG
+z!kh^U&MnePFh9c}z3fVzi|me@yv8{*il%pW1>QcGKH-7OBC#vm)^qmG)F@u^&3*Bg
+zrDhA$RnE=oE6=Qu-?GN0QewKredU)Qo(IN-R+@Z%8u>rN!+h$as~4_=qQ=wJ&t;uc
+GLK6VmWdET6
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/checkbox-checked.png b/src/assets/gtk-2.0/assets-Aliens/checkbox-checked.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..0bca701daec32ab543482b1beb897bfe547ea2a5
+GIT binary patch
+literal 512
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLFd@Jv#Fc@8fuZ4l
+z=&Jw5GyiKh{I_iQXw~r9y!DGi!x!7uuQnauZCifYHh;Bl{$|_q&9?cQP0Kgy)^FA=
+z-)x$H*tGnxZvJ80^1}v1ezR@)ZqxGJrun-~D@Y2&hKRKMuxa@Q=R%c1rNCN{*d^DM
+zY8V(8^h<*Lf*F{YS=ofd#3dx<`~!l5LqfyCJ370%dnPYgwtVfn-G`5!zi|D=&D(eG
+ze*E<L%h$i(HdYujFfeTMba4!kkeqw)c32aGi0eh)2~PLUns9_LeQetH@BjNx3OtSO
+z&##=`lR71SedU%9R}5_ft^K}y*|sqC?TU>Hlb7C_GH;{Sz0P@uCP!YHR(B^s@3Zsi
+z{0R&T&oEkip76`CeCHX~yk=dsugPazm$7_1tUG~?bL!?Zjl2IAcuT3+q!<aNng95f
+zoVD;w)2Vm1%M2%f><jsqA+k<OxXNwS+Lu2<4*y(~`t(I+On|oAtAgi=VbdZliodR^
+X7j!k9>8A6>5fmYwu6{1-oD!M<2>kB^
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/checkbox-mixed-active.png b/src/assets/gtk-2.0/assets-Aliens/checkbox-mixed-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..c40ba14ad7c3ec0fa2ea8fcd510cc223a140aac9
+GIT binary patch
+literal 445
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLP#xeC;>y6lz|inN
+zbk%?DhN~*Mw;321<gAO03a^?LT{9`XVp4p?wD_t?!DW-8E5^lFjEb%r7hf|jx^7%_
+z-KgM-ap5)N!Yf9FS4;}87#ChPF1l<CW`NWeUN$KNa|<pT7hEzfxC~MNVq5}o^Fd@<
+zhTkRz1_q6iAirP+CT2EvHP^84h{)*JxcGz#6DLiXx_Zspb?Z0WzH|59{Ra;pKKk<Y
+z+rJs<fq@JR4E>%ijv*3~a}T~2b8?Viy`X%#)g#bzqPO1jzw-^|n@&6SCp-U-uWRJR
+z@2+J*1~SrFTl<ebJ0;)Qd~<4>#I1?ia%!udopN_{+0r859~IOwX&Td_#Y>wrEN|s*
+zm37xWGJBfLBgfOck6gSN9)`taim2K79+r!8IxK0d{w!&SMMQ<@)=v!0(#tBZ?|s+U
+bU0=)SFQ?CZb$<ACP-uF(`njxgN@xNA(}%UQ
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/checkbox-mixed-disabled.png b/src/assets/gtk-2.0/assets-Aliens/checkbox-mixed-disabled.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..5b3bef06311f23c4cb0f78be0e0009b5609894f8
+GIT binary patch
+literal 382
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeL5E9@M;>rL5{~7-O
+zXK46u-TB|L<-bG2H;2w|b}ip*8ot|fe79-(W!3t{s`Zy$(^speZ}x2<DZ7^6R;^!c
+zTYuOzf3<1;Vbk)}rsaoi+fSR8Z#FI8+63m`WME*BDGBlmW?*Dw;+2+>k(HCvH!v`?
+zw6wDF_V)4d^$iJ)bbf01n}LC$+0(@_L_%`z!APNI1re45h7zuKgqu#?`9JStWCYir
+zo4v=U%v}4u%#2HLuTex+OdNCmFQ(;<6Zsm`79Dcb^;yGp$l$U=&5W4}GR9(uj2|nS
+zz4KyGEtfvhFUf6aZ0sbFX3|pRvxcjER;PK>yoqAV7d`fkeh_5Iw$91Lbn@4K)>*B~
+Z|3$0FADYhh@Chh1JYD@<);T3K0RXlqk@)}s
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/checkbox-mixed-hover.png b/src/assets/gtk-2.0/assets-Aliens/checkbox-mixed-hover.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..18b014e4cbbf640482d3bf69d94f5587ba089868
+GIT binary patch
+literal 445
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLP#xeC;>y6lz|inN
+zbQK7BPWu1<|Nm7d{)bKZ88P)|_>^y9Q@@2z{T?ypd-&AvVbi{cPW>J}{a4u3Utv>z
+zg-!VpKJ{1F)E{8RkBF&1!l(TRpZX(W+K)&uih!^|<oAeaU~v!|q!OZlXUnlF1_lO=
+zk|4ie1}0`Ub~V?q@QBFh*tqzF2@@wxnYwz-+I8zU+`e=7-u(v;A3pl>_1nK0>4AX^
+z3=I9AE{-7*l5-Ef7ISitV7;Jxxz!`kbE3E2^S|>A=9^AC_9r|4kFRUw#qX|VK?X9?
+zSzG&$K077f*?e<qo5Zb&+Hz{Eo}F@cblK7(;2#y#F=-mpqQy&_Gc0fAZk2V{Ju-Wm
+z%p=FsypLSG86JkkWQwTS`5u;wayl$&to|%%hebq%=+;jR&C<&%ukU@=*j-=C=r5<w
+Ue06^KbWmt|y85}Sb4q9e0FcYc-2eap
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/checkbox-mixed.png b/src/assets/gtk-2.0/assets-Aliens/checkbox-mixed.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..c8cba1a24b294bf07660f014f1e2016bdb3e8706
+GIT binary patch
+literal 439
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLP!Zr0;>y6lz|inN
+zbk%?3ng6vL{@XSGux|cg+w#-4`KwLKH`|tPw$0ycTE1DgezR`*X4CTBrum0W3rG!^
+z@!h)lyDdoYJ6H-#wjfB56cQJt2F48#mFZ<*U{Eg!@(X5QVrFGi_45x13=Rnm3vch}
+z?CM#xc*)Xb%dcI(ar4&gJ9qDW`uyeJV&}3m3=9mto-U3d5|VQdz7}(GkYK%_ytqhL
+zOS7nR&iDGmzt(Itc{YFV#+hDSuRgEria01xawST>`)+H!5&LFtUd=5H+U`Cfr>Aaj
+z^2q2^klXS^z*JZCh{I`yi=U4-Kl`}6z2ah!)1AznPDi%12;?1}>X-QFvdO!JsU~v_
+vii7lyZEilgabcKzLc!uaGHuUwOEz8=U&f$2ojFfg8x)S7u6{1-oD!M<N%+BA
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/combo-left-entry-active.png b/src/assets/gtk-2.0/assets-Aliens/combo-left-entry-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..3faa9890c41b7378464385eae20a8a50afe1e26b
+GIT binary patch
+literal 326
+zcmeAS@N?(olHy`uVBq!ia0y~yV31&7V36TpW?*3OvFN|Uz`(#+;1OBOz`%DHgc*<L
+zuSj8FV2~_vjVKAuPb(=;EJ|f4FE7{2%*!rLPAo{(%P&fw{mw>;fq}s<z$e6&fq}tu
+z(tn4B{|pQa3SM3E?)_>$eRkDvZ5rNLR6H^-zi(D?-@4(Wb>l~?hEG<F?`@jDS~q{S
+z0iiF}&0lPqzSuN>v1$2c)AHS><vZ8n*JfbrgZzRS*g1G4B&B8L!XqLJ3X6(Qo<4Kw
+z%FSC}zD(O?v6g{>A;i<gF+}71+e<qc8x$CvFDg_#=#5GH?<(7HBl^efa5aWqws&%v
+zmbr-TI`U?2?xBM=5rTSE+6ymbD!k>FZ@RvaDV<lk+pf7&$6KEv`AR$UnW}4Ia!Uk+
+UqmNIS6T<-Vm#d%4I;Vst075T%^8f$<
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/combo-right-entry-active.png b/src/assets/gtk-2.0/assets-Aliens/combo-right-entry-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..8f7b9ba63ae2ce63f5446cc446782da5caf0cd01
+GIT binary patch
+literal 337
+zcmeAS@N?(olHy`uVBq!ia0y~yV31&7V36TpW?*3OvFN|Uz`(#+;1OBOz`%DHgc*<L
+zuSj8FV2~_vjVKAuPb(=;EJ|f4FE7{2%*!rLPAo{(%P&fw{mw>;fq@|;z$e6&fq_B0
+z;lJmk{|pQa3SM3E?)~b1lhu6s%p2a?RlijVooQZv->m$BS=B?!#*fwwAFUfd+BAK&
+zY5r>63?glszt}W?v2OWh)BMe*<(o~*cbk^)joA`43=9m?B|(0{3~cN?5|UEVGO}_J
+zQE~YNg(ps)x_If<lh0qiMEq`j&A`AA?&;zfqH+H1rR|Ij1_I6(H}g;SEn?d8e;!Z5
+z#o!OO!@ZhTS?7eg9Pn!H2r~_K+r$#GyJu?CISv^aKR&KM9~3k0w|%nE=wan%e9pb-
+kVSBf2^`ou&ZciAmUKJ@`_j*$<0|Nttr>mdKI;Vst05&3lYybcN
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/entry-active.png b/src/assets/gtk-2.0/assets-Aliens/entry-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..68b0aeafc7acac1ec11498517d64e3684bf7eb63
+GIT binary patch
+literal 423
+zcmeAS@N?(olHy`uVBq!ia0y~yU@%}{V36TpW?*0t*mULx0|NtRfk$L90|Vb-5N14{
+zzaoW!fkCpwHKHUqKdq!Zu_%?Hyu4g5GcUV1Ik6yBFTW^#_B$IX1_p+r0G|+71_lQ0
+zhX0<E{yQ}MXJBAZ@amFx?^pMmtme~a-tgA0`mIvvOq+&x78Q@o%kP_2+&3$KU{>|e
+zvhkyJ!$<4Jk5&zztQz0jG<~&c{%Q?IHq9WmP4gG)<}Wr)UqFnOZ#K=}Y+AnAw0yT|
+z`EJ<PCC$LVpjr~-7tFxM&cP!gDJ3l<D<>Bo5g8SiUr<<7eB$J((`PPTx^nZ@lh0qi
+zl>DeEVqjos^>lFzu{izqinmykfq=_JC6x{h4SCTC4hmQPZGR!wwX)s%o%tHJ3Hy%C
+zZK{32!*D14R1M=2<LQ?o8&@;!JviGt&$Tk4Ti;u|y2xS4<>nq~k7|ZWw)79@4=!Yk
+z-I18Gl-;ztgy)m+j<q=nHiwlbv&F8TBedYdFXh?m7!q#TX<h$#S>*u#lSAfBe6r?O
+R85kHCJYD@<);T3K0RRV)tLFd!
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/menu-checkbox-checked-disabled.png b/src/assets/gtk-2.0/assets-Aliens/menu-checkbox-checked-disabled.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..1577899396b33cbb4613853c668871e9e970e859
+GIT binary patch
+literal 433
+zcmeAS@N?(olHy`uVBq!ia0y~yU=RRd4rT@h1`S>QU<L*T&H|6fVg?4j!ywFfJby(B
+z0|SF(iEBhjaDG}zd16s2LwR|*US?i)adKios$PCk`s{Z$QVa|X6#+gWt_%ze3=RJq
+z8vYx1yfg0j@6hnxs{6ll>lcTv|F*6FEnB`hG<>sb`DWAc-KPDARr3$ah97oKzieB-
+z+P40(Y5Ho@{>!@Mt98pS`=+nft>3MhzuPr`w`u-i-Tc+M`G;-WH`}(KHZ9+*o4#4M
+zfXuON`exe-5|K0!@CSLKB*-tAfr*KqUqDP;LQ+~rR!&J-#n8ye*x1Cx)X~Yw#mg%s
+zBs45MJR&0USBJ?W1_p*UPZ!4!iE!Wk+e}Rg0xr{+{0?=|=9*G+_y7OH396553fb5q
+z8V*ERzmHW;Oe~$>dC+geevRa$PYasNzC1T_;Pe&SZ|uSq^X;sv%r*moz3YDzOC=e|
+z`u(`MDfs-<!uq&x$*uab{oB9HVCoEM5OoM=v-%S<W50c+#KmP|Srea4Jyn(eT5H|@
+XCmhmG<HX-B1cjidtDnm{r-UW|^Q){Q
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/menu-checkbox-checked.png b/src/assets/gtk-2.0/assets-Aliens/menu-checkbox-checked.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..19b61393ae303603cddc4786a4b98efd9f6a947f
+GIT binary patch
+literal 461
+zcmeAS@N?(olHy`uVBq!ia0y~yU=RRd4rT@h1`S>QU<L*T&H|6fVg?4j!ywFfJby(B
+z0|SF(iEBhjaDG}zd16s2LwR|*US?i)adKios$PCk`s{Z$QVa|XT>(BJt_%ze#xwtG
+zH~jaU^xwAar*+d$tJa@(O+Rg#zuPr`w`%@j-TK3(<%ey{Puu2i)-B&`TEE*if46Q1
+z34)|rzuB~WvjvHRrCPq*fRQzrgs_Pu>*bB^FfcIamIV0)GqAF;YiaA~Iykv``uc~2
+zC#9zM_Dz^LdCIiuyZ7wfclh#^s~<mo{_^$5&)<LkO3ZsTgMope+tbA{L_*T{AiGeL
+z0Rzhc<q&JFvrSA+E|Y%$|IV|(r_7LRbJQs-UV~!&S;C<l67QP3gBW&Pn#8<tnd?uF
+zpX%3DXD)cy-;?AUmT~fVp+c%i_9We?Pn+-ZzYkrLx#z-!H|Fgc*JMIHGQaGe{7l7h
+zK}Milz=cVS0_A#nd^{7i{X(84JW~(79-7X7OkC-ug4k@qV^bLz7#KWV{an^LB{Ts5
+Dgrvo`
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/menu-checkbox-mixed-disabled.png b/src/assets/gtk-2.0/assets-Aliens/menu-checkbox-mixed-disabled.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..3bfece4eab9ad1f0fdaf016117d55f14eaa55c9e
+GIT binary patch
+literal 342
+zcmeAS@N?(olHy`uVBq!ia0y~yU=RRd4rT@h1`S>QU<L*T&H|6fVg?4j!ywFfJby(B
+z0|SF(iEBhjaDG}zd16s2LwR|*US?i)adKios$PCk`s{Z$QVa|X-T^)#t_%ze3=RJq
+z8va{%{x|M;XWa4Mq2aw<(=XfBuePnfY?{8>wEwbh`D)$r%f9KWb?bMl=I?gR->sX!
+zS~vf&ZTo4{^3AsCn{6wIp%~Iq2DUrMFPMReiI<;Wz|hFZ*x1Cx)X~Yw%PS-_A|i6<
+z4)$aQ28MJ`7sn6@$<TwGe9a0Bt_Rz@xNlwC^z(iFr63=kGat-%PYAl9v;AS|%2VwN
+zCH7U#VXIiZ@o>$`iMoDsr!MGIUn$%<$!%3&kjje3H?Kr)i0rjFxUh}+%*x}(17_H+
+jK6S2O^J@Q-`oc%~3*`lup1JbI5adlyS3j3^P6<r_9lC{D
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/menu-checkbox-mixed.png b/src/assets/gtk-2.0/assets-Aliens/menu-checkbox-mixed.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..666d8036023ac54440aeae08ab1a513d6b9667c1
+GIT binary patch
+literal 363
+zcmeAS@N?(olHy`uVBq!ia0y~yU=RRd4rT@h1`S>QU<L*T&H|6fVg?4j!ywFfJby(B
+z0|SF(iEBhjaDG}zd16s2LwR|*US?i)adKios$PCk`s{Z$QVa|XQ2{<7t_%ze#xwtG
+zH~jaU^xv-ehi%(W>!zPptv~IWe%iGBux|Zf)B4S(<(qBGHxQ%syKT#N8!)m4lMpsm
+zviJJMxeN>pvL!)&!3?Zy?5bMYI=a1m6DCfcGHv?qJ$v_EzH;@`=P!T$eo}S=IV024
+z#W6%eGV~xPU$X*(>p}H*U1hF;f4=WeTdBsD_T%-NP47?NDAJT~_e(T$c^baGpK+d-
+z&jnep7Pi%A4y@`)4nFo+HFS=a=e$tK<12jprKfP1p7Dw}u&1<I)Fq9}iZ!|*lWlwM
+dy7irPS@T7Mug;(8&%nUI;OXk;vd$@?2>|t+l)3-_
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/menu-radio-checked-disabled.png b/src/assets/gtk-2.0/assets-Aliens/menu-radio-checked-disabled.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..3a4fe6efd94e7ab0fae9aaf96d4468fafc3f5f4a
+GIT binary patch
+literal 376
+zcmeAS@N?(olHy`uVBq!ia0y~yU=RRd4rT@h1`S>QU<L*T&H|6fVg?4j!ywFfJby(B
+z0|SF(iEBhjaDG}zd16s2LwR|*US?i)adKios$PCk`s{Z$QVa|XQ2{<7t_%ze3=RJq
+z8va}M{WorSX58@KxZ|C1$A5>0_jXOcY+JwDw*Ind`fAhu%ev*Ob;~dNrmwb5-))*d
+z+cbZ-ZvAf6{N1kkyLIzd>*gP}Z9i>VzS%Z?vuy=2UVnHsiGhJZt|Z7Wn1P9jlZ%U=
+zU%=4F$k^D##MIuw!O_Xd%PS-_A|g_33d17?28L2k7sn6@$<TwGLQMt&EC)E%T9g+o
+znvp#7e|@mnsudS_ueOGGN!j|HEq?5n)*So!ajGdp+!`N;?HiTk8qJx7uKrFGU)AB0
+z%IH3I;!2$dD~yD$Cf#k<N_yhUufN8F`^*{^hP0<ovo{z|{-AL1!ISm~uQ$<e{;6q;
+UywK5PaRvp1r>mdKI;Vst0A@Ij#Q*>R
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/menu-radio-checked.png b/src/assets/gtk-2.0/assets-Aliens/menu-radio-checked.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..f4f4d88e3ed04003bd7a18a9480e86a5cc1d4c46
+GIT binary patch
+literal 398
+zcmeAS@N?(olHy`uVBq!ia0y~yU=RRd4rT@h1`S>QU<L*T&H|6fVg?4j!ywFfJby(B
+z0|SF(iEBhjaDG}zd16s2LwR|*US?i)adKios$PCk`s{Z$QVa|XnE^f_t_%ze#xwtG
+zH~jaU^xv}On?u7lyOwXZZ9lD>ep<Euv}^il)AGZ*^@mOCH=CAkwk_X4jMneAE#GZW
+zku@q8P1dI6`)T7veGCi?N+m&l!3?Zy?9wu_TG~3gy?qlVPM$Jt`j&0mckkJ|@A8$a
+zpFV&2^Y_>bWm^UYh6+y?#}En0(1V;p%?bi62Lze#We627)HwHFUNUU8&YQLsZ?~)q
+z4u3e|zWKXD3k06p&)dg!pt)0Sg}Is&=jm=S<D;LKxpT4mFJyFn_)ya%LBl4kD{!`W
+ztMl=0w$KD6kpl->SQpsY>@{{-#eau&_QQZ}d66-}3cr{IW=Pab*rLzKz`(%Z>FVdQ
+I&MBb@0P*OeQvd(}
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/menu-radio-mixed-disabled.png b/src/assets/gtk-2.0/assets-Aliens/menu-radio-mixed-disabled.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..3bfece4eab9ad1f0fdaf016117d55f14eaa55c9e
+GIT binary patch
+literal 342
+zcmeAS@N?(olHy`uVBq!ia0y~yU=RRd4rT@h1`S>QU<L*T&H|6fVg?4j!ywFfJby(B
+z0|SF(iEBhjaDG}zd16s2LwR|*US?i)adKios$PCk`s{Z$QVa|X-T^)#t_%ze3=RJq
+z8va{%{x|M;XWa4Mq2aw<(=XfBuePnfY?{8>wEwbh`D)$r%f9KWb?bMl=I?gR->sX!
+zS~vf&ZTo4{^3AsCn{6wIp%~Iq2DUrMFPMReiI<;Wz|hFZ*x1Cx)X~Yw%PS-_A|i6<
+z4)$aQ28MJ`7sn6@$<TwGe9a0Bt_Rz@xNlwC^z(iFr63=kGat-%PYAl9v;AS|%2VwN
+zCH7U#VXIiZ@o>$`iMoDsr!MGIUn$%<$!%3&kjje3H?Kr)i0rjFxUh}+%*x}(17_H+
+jK6S2O^J@Q-`oc%~3*`lup1JbI5adlyS3j3^P6<r_9lC{D
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/menu-radio-mixed.png b/src/assets/gtk-2.0/assets-Aliens/menu-radio-mixed.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..666d8036023ac54440aeae08ab1a513d6b9667c1
+GIT binary patch
+literal 363
+zcmeAS@N?(olHy`uVBq!ia0y~yU=RRd4rT@h1`S>QU<L*T&H|6fVg?4j!ywFfJby(B
+z0|SF(iEBhjaDG}zd16s2LwR|*US?i)adKios$PCk`s{Z$QVa|XQ2{<7t_%ze#xwtG
+zH~jaU^xv-ehi%(W>!zPptv~IWe%iGBux|Zf)B4S(<(qBGHxQ%syKT#N8!)m4lMpsm
+zviJJMxeN>pvL!)&!3?Zy?5bMYI=a1m6DCfcGHv?qJ$v_EzH;@`=P!T$eo}S=IV024
+z#W6%eGV~xPU$X*(>p}H*U1hF;f4=WeTdBsD_T%-NP47?NDAJT~_e(T$c^baGpK+d-
+z&jnep7Pi%A4y@`)4nFo+HFS=a=e$tK<12jprKfP1p7Dw}u&1<I)Fq9}iZ!|*lWlwM
+dy7irPS@T7Mug;(8&%nUI;OXk;vd$@?2>|t+l)3-_
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/progressbar-progress.png b/src/assets/gtk-2.0/assets-Aliens/progressbar-progress.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..7cfc552ac436b85d5de20034b61d336ceebb7bde
+GIT binary patch
+literal 136
+zcmeAS@N?(olHy`uVBq!ia0y~yU|<1Z4mJh`hLs=Z)iE$Ia29w(7BevL9R^{><M}I6
+z7#J8NOI#yLg7ec#$`gxH8OqDc^)mCai<1)zQuXqS(r3T3kz!zA5cPC%4B?oWye0GJ
+kzxj-u28Ih54>2)pY-ifHa^-z31_lNOPgg&ebxsLQ0Q#>dJ^%m!
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/radio-checked-active.png b/src/assets/gtk-2.0/assets-Aliens/radio-checked-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..ca4483ca579608bb28ba32c81f2ef479012e203b
+GIT binary patch
+literal 478
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeL&=uel;>y6lz|inN
+zbk%?DhN~*Mw;321M2%u34dW$D6O9V5nigF%DZFA*e8sf*s!73RlcFoe#aE1qt{N9#
+zGcLMrTy)*2;EHkKHRHl7Muk^Q3a=O!UN$beY+QK7AoG}E76=&^UIu9_ylhek5;rcm
+zY+P^&L>59Amq6Tn5NV;yugbu{pj#5;7tFxK%*L)}YiA!89uXNG8yBB2VdA7IQ&+E9
+zyKeo4{Ra=-zH|59{Ra;pKKk<Y+rLX1HGK>W40AkP977}|=N^15=Hwv3dO=y4%d`CD
+zs*p!}{=eR8clgqW^Y<itk7kBVi`*4r(2{Q!$7nTK_J5A<mNJu^3mi8eFJ2b+=BGx-
+z3}(S2oy?p^nr~IUid&H?z-oHE&?bx3#qn&ZOn(&P#|34Dd$qUnJUY>6dt?$bH-~ll
+z`RIjW7edZnxN&KN)9G6qg4gPn{F&4HT!zis>)rkLZ#Qf(yv9HMn@N7pvPyMOaC^G?
+KxvX<aXaWEVPsrE+
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/radio-checked-disabled.png b/src/assets/gtk-2.0/assets-Aliens/radio-checked-disabled.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..d4246f20a1f5b56b325bb9acc40ab63bd9db4307
+GIT binary patch
+literal 417
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLkR0F>;>rL5{~7-O
+zXK46u+4tYL;hAy6f6JEt4h`QNI=|Vqe6wlzZqxDIrs<be>ldrmUv^Djt(v~sw}GVW
+zT7KI$eYa`;Y}5SRs`aaF>kpgeuQts;Y+AnBwEVDb`)Ski&8Fqsb)DJU7#J87OM?7@
+z85kLvIJvl_Wn^UK<n#>;3@t6Ktn3{eyuE#Ve0@VgBc)3w`Y|vtO!9Pb43UtWdoWU{
+z$v}kVz(I~p>$}=?i~k2l^|v$~kiWab_vu_SxAL7$>T_TEaF+GYVh?Tb_4Vgef9lyY
+zbykIucE=oX$s@DHb&oi_{>)PyC6%;Llu2+cD~wujwf*AsX>BhmE;>Bf<Dq!v#N^1t
+zsUM!OE?>0#fSN{S0LzV|%5x3d+*8+@J-fbytNbtHvnti(q=O6pfdb6a)z4*}Q$iB}
+D!FZ(&
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/radio-checked-hover.png b/src/assets/gtk-2.0/assets-Aliens/radio-checked-hover.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..bc652c264191507529ce9335b12cc59c8378a736
+GIT binary patch
+literal 478
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeL&=uel;>y6lz|inN
+zbQK7BPWu1<|Nku)e{Vhad(*k!VN-raO#K-?<y+X)Z{btFM@;!1KJ|OpwC|x)zlTr%
+z6*l!(*py#kQ+|X`{S`L#2bl3AV(O3ZX+OfJ{z#q!MG@0}M1oPo)E^)=i2NQg4bBE>
+zfhe%GF^^+lV9+fI@(X5QVrFAkv$eAi3y+A5j*W{?m@skDl&P!NtX;Q$!~TPZZr{0k
+z@BV{_4<CK``t9E(jha3N28KDFE{-7*l5-Ef7ISitV7;KM%;j1Ba#hHqJ^x>CwL5(2
+z!})s>zDF~|rbX@wF=)v*i(|B!Ec-u4cT1T`&IOK}j~6eCd-GGHV+OO}kxpjLBh9xe
+zU&XCR6<{^JUTBlW>f(5|RHi?Q@#BKB!oAvCc^;i;v^_G3nVZ8p{e1L7u?rz*FWk7a
+z!Rhp^4Z&-5Oa9F1eJ;ah?e*^d`?ni57+&L_{>>!6XIZ5>D7Zac{an^LB{Ts5W@_T&
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/radio-checked.png b/src/assets/gtk-2.0/assets-Aliens/radio-checked.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..34efd348341fa1d31846fef92dbe982fc5ec0094
+GIT binary patch
+literal 473
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeL&>r9u;>y6lz|inN
+zbk%?3ng6vL{#&+ub7=Tx*YeG}`G;-GPuu3NHZ9+5TfW&gf3s=%X5ISDy5*Zq%XgdR
+zA2uyNteby;8Q-m&zuSTYzk{W~WD6D&qz0R~P0M$#ACFiW7#MU)g8YIRn3!4Fq-A9N
+z`~w1mLqfyC+dDeDdKN8SvUJ(<E!(zVyME*5t=o6*-uv|V%Rd#rfLaCyhS{Djjv*3~
+za}T~0a|)1Py`XHa<?1@wt(E8b-}&pm?$n9>cT;-u%G^02p+f9jZKdbJo-H)D{@|ao
+zuy}!@OZM4DQ7Ns*2f`h5EFU??SQfQa1n)jO*Lo|<q6N<w^tLiVsYkwV-|gVf;ylu-
+z?B3C!EX`s4)M4F)4;ib(Gh9vHT-fOJ?bY7ads?ZlH@6)8c7FY)nt5hs%YHF3h#L$0
+Sa4zWqg|w%upUXO@geCxOPSCFa
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/radio-mixed-active.png b/src/assets/gtk-2.0/assets-Aliens/radio-mixed-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..c40ba14ad7c3ec0fa2ea8fcd510cc223a140aac9
+GIT binary patch
+literal 445
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLP#xeC;>y6lz|inN
+zbk%?DhN~*Mw;321<gAO03a^?LT{9`XVp4p?wD_t?!DW-8E5^lFjEb%r7hf|jx^7%_
+z-KgM-ap5)N!Yf9FS4;}87#ChPF1l<CW`NWeUN$KNa|<pT7hEzfxC~MNVq5}o^Fd@<
+zhTkRz1_q6iAirP+CT2EvHP^84h{)*JxcGz#6DLiXx_Zspb?Z0WzH|59{Ra;pKKk<Y
+z+rJs<fq@JR4E>%ijv*3~a}T~2b8?Viy`X%#)g#bzqPO1jzw-^|n@&6SCp-U-uWRJR
+z@2+J*1~SrFTl<ebJ0;)Qd~<4>#I1?ia%!udopN_{+0r859~IOwX&Td_#Y>wrEN|s*
+zm37xWGJBfLBgfOck6gSN9)`taim2K79+r!8IxK0d{w!&SMMQ<@)=v!0(#tBZ?|s+U
+bU0=)SFQ?CZb$<ACP-uF(`njxgN@xNA(}%UQ
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/radio-mixed-disabled.png b/src/assets/gtk-2.0/assets-Aliens/radio-mixed-disabled.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..5b3bef06311f23c4cb0f78be0e0009b5609894f8
+GIT binary patch
+literal 382
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeL5E9@M;>rL5{~7-O
+zXK46u-TB|L<-bG2H;2w|b}ip*8ot|fe79-(W!3t{s`Zy$(^speZ}x2<DZ7^6R;^!c
+zTYuOzf3<1;Vbk)}rsaoi+fSR8Z#FI8+63m`WME*BDGBlmW?*Dw;+2+>k(HCvH!v`?
+zw6wDF_V)4d^$iJ)bbf01n}LC$+0(@_L_%`z!APNI1re45h7zuKgqu#?`9JStWCYir
+zo4v=U%v}4u%#2HLuTex+OdNCmFQ(;<6Zsm`79Dcb^;yGp$l$U=&5W4}GR9(uj2|nS
+zz4KyGEtfvhFUf6aZ0sbFX3|pRvxcjER;PK>yoqAV7d`fkeh_5Iw$91Lbn@4K)>*B~
+Z|3$0FADYhh@Chh1JYD@<);T3K0RXlqk@)}s
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/radio-mixed-hover.png b/src/assets/gtk-2.0/assets-Aliens/radio-mixed-hover.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..18b014e4cbbf640482d3bf69d94f5587ba089868
+GIT binary patch
+literal 445
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLP#xeC;>y6lz|inN
+zbQK7BPWu1<|Nm7d{)bKZ88P)|_>^y9Q@@2z{T?ypd-&AvVbi{cPW>J}{a4u3Utv>z
+zg-!VpKJ{1F)E{8RkBF&1!l(TRpZX(W+K)&uih!^|<oAeaU~v!|q!OZlXUnlF1_lO=
+zk|4ie1}0`Ub~V?q@QBFh*tqzF2@@wxnYwz-+I8zU+`e=7-u(v;A3pl>_1nK0>4AX^
+z3=I9AE{-7*l5-Ef7ISitV7;Jxxz!`kbE3E2^S|>A=9^AC_9r|4kFRUw#qX|VK?X9?
+zSzG&$K077f*?e<qo5Zb&+Hz{Eo}F@cblK7(;2#y#F=-mpqQy&_Gc0fAZk2V{Ju-Wm
+z%p=FsypLSG86JkkWQwTS`5u;wayl$&to|%%hebq%=+;jR&C<&%ukU@=*j-=C=r5<w
+Ue06^KbWmt|y85}Sb4q9e0FcYc-2eap
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/radio-mixed.png b/src/assets/gtk-2.0/assets-Aliens/radio-mixed.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..c8cba1a24b294bf07660f014f1e2016bdb3e8706
+GIT binary patch
+literal 439
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLP!Zr0;>y6lz|inN
+zbk%?3ng6vL{@XSGux|cg+w#-4`KwLKH`|tPw$0ycTE1DgezR`*X4CTBrum0W3rG!^
+z@!h)lyDdoYJ6H-#wjfB56cQJt2F48#mFZ<*U{Eg!@(X5QVrFGi_45x13=Rnm3vch}
+z?CM#xc*)Xb%dcI(ar4&gJ9qDW`uyeJV&}3m3=9mto-U3d5|VQdz7}(GkYK%_ytqhL
+zOS7nR&iDGmzt(Itc{YFV#+hDSuRgEria01xawST>`)+H!5&LFtUd=5H+U`Cfr>Aaj
+z^2q2^klXS^z*JZCh{I`yi=U4-Kl`}6z2ah!)1AznPDi%12;?1}>X-QFvdO!JsU~v_
+vii7lyZEilgabcKzLc!uaGHuUwOEz8=U&f$2ojFfg8x)S7u6{1-oD!M<N%+BA
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/scale-horz-trough-active.png b/src/assets/gtk-2.0/assets-Aliens/scale-horz-trough-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..7b29883ccd7637300d873fbd01579109af26b81e
+GIT binary patch
+literal 160
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4mJh`h6m-gKNuJoI14-?iy0XB4ude`@%$Aj
+z3=9mCC9V-A!TD(=<%vb94CUqJdYO6I#mR{Use1WE>9gP2NHH)l=z6+1hIn))CrGd^
+zP7vu~YHARi-r{@u`~M{pB}>|bS4a9R*_9#E(-dgHmBGNE62-#ex0!Di0|Nttr>mdK
+II;Vst02yX3(*OVf
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/scale-slider-active.png b/src/assets/gtk-2.0/assets-Aliens/scale-slider-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..956cfaaf6797247f2adc673fc26963a648172dc9
+GIT binary patch
+literal 521
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeL&>r9u;>y6l;Lz~j
+zc;<iYhO62Q|3e%88<)Rx>G<!^@ZPrVvu)ddtA@{ZE#GV!zFW1tw`%!r(eU1({ku)W
+z4~K>y4(&henm<}MeYS4;Y1Q!As`ZOy(^uQpuQp9ztsB1CH+{2i{A$zk!?yW{Z3`6H
+zwEnPZ`3^#@-)$ibFlj%L<pKi(gHB11UoZm;D;padKfi#esF<vryu5;fl8TC|wziIe
+zp^>qLrDtbX_r*(>uiU)(<?FXvb@SB>3=F3|T^vI+&esOLWolC3iOE_S897tRqi$*B
+zt>5<X+ZJYod`~Z6zun8|uwjqEGaEiz?qvpLoe~8xTK66%F+Jniqi*-$<Yy=5dxksp
+z3>J%j+v0b6*XvhGOXuGItzv)kZ)b+l9kpd^=6LN3e{oLAspo02OP>ovdXKqkh{q9!
+zc~PocJPKkfCM0(3U*47S(MezLt=Zzc+(PeeBz(T9@Z$@|^gUU(v;CeQ{bsB3?Xh6u
+z)QqOT^#OlZq}`mcwr$^y6(#J+-~7*f)qG^b6%#C^U#f1tYkB^%5(Wka22WQ%mvv4F
+FO#tYp;@|)P
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/scale-slider-hover.png b/src/assets/gtk-2.0/assets-Aliens/scale-slider-hover.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..3cbc02c2028715d4c6dec690296b876d2865b0e6
+GIT binary patch
+literal 463
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLkQv|;;>y6lz|ioY
+zA#{~?!&U8u{|*iREejv(b^q6Hc%|L&-@5Fzb?1NchPUPo|8*-q=(c|_tNdiv_Q|;6
+zlVQVG>&~y1O<ycqzT33?v~K-r+x*?8<-1Mm51SSU`fAe(60ru0GluH@W?*1YDhcun
+zW?*7wW8>iD=HcPx<>M0+6c!edlG3fHs62K0%-PFVK7ILmQe(ji1_p+mo-U3d8s|%c
+za;2LTcw|(UEoJ*LD{bNb|L$$lP5nn|8Q)1*Z(|gQhzbh|Q%x^mIX&g@<3~STRx!J5
+z`n=LgaqIU`hMq(tkt1n}%WI8&P8)sYom(XAu>0F)rDxO5ok`2n$rtH*81Tqy4WFzK
+zt4(2Tb)w56rcX=uE|@rB;Rn^jAD3%X%Bww3DK9I_&MyD|pyuC$xJkRDx7L-G#HU6J
+zx-RJ`=$&GFPvf%I$NgK?&Y%7K{qmdwnfZr$&-3rNtR~5C|E3ERzMigrF6*2UngD4;
+B!UX^T
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/scale-slider.png b/src/assets/gtk-2.0/assets-Aliens/scale-slider.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..c682ad12eade06f9d384040dd36f6b4849174a8c
+GIT binary patch
+literal 290
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLU>x8R;>y6lpxyA_
+zbJBmymT%TAKWv+S*nr6IHZ9+6TES$?51W>6AZ`nU`~CKM)AI}r3<4!Ve!&cE?9w^8
+zdB={QIC=iU$IoACrPHS|FffF8x;TbNNS-~|$lIX6!*XEx0;Qv$e*0%T`2^2tuzurv
+zuDa*9z@I1QJdMRJ{S0(0xg_e+yH3f-$~mQkf00|bplk{2L=F2{8%~_^G_DI;nHKJO
+c;}$ndHrs_2n}XFC7#J8lUHx3vIVCg!0M8|FPyhe`
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/scale-vert-trough-active.png b/src/assets/gtk-2.0/assets-Aliens/scale-vert-trough-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..3c307e607bf97d8c518bbf763ad1237f64547c00
+GIT binary patch
+literal 159
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4mJh`h6m-gKNuJoI14-?iy0XB4ude`@%$Aj
+z3=9mCC9V-A!TD(=<%vb94CUqJdYO6I#mR{Use1WE>9gP2NHH)l=y<v~hIn))CrGd^
+zZdi9<+0)<kv!}iP?|JdCi}vxJD1)qnD_9SoYzj2s(qLyuP-1Of@G9X50|Nttr>mdK
+II;Vst0HQfFU;qFB
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/spin-ltr-down-active.png b/src/assets/gtk-2.0/assets-Aliens/spin-ltr-down-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..4cdb61d04cbee7459e84d824bf5c71b7381b129a
+GIT binary patch
+literal 243
+zcmeAS@N?(olHy`uVBq!ia0y~yV31&7VBlk6W?*1Ae(j(y0|NtRfk$L90|Vb-5N14{
+zzaoW!fkCpwHKHUqKdq!Zu_%?Hyu4g5GcUV1Ik6yBFTW^#_B$IX1_lO$0G|+71_lQ0
+zhW`u<4D#;%>VA{W8{R5~&NQofXxaGDrs=CqGYDC?e6wl(X4CS`rsca{|DIk31_u6;
+zAirP+HXcbS8M(Op6DKb|`TQk-Gh2^=fkD&L#W92<Iyu0p;XhBw!xevAAFcTB^ytYS
+ohk`Tb^HYBCv+rjXm@~bXhk>=i_*!-AERcB&p00i_>zopr06Gg)egFUf
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/spin-ltr-up-active.png b/src/assets/gtk-2.0/assets-Aliens/spin-ltr-up-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..2f798ba181bb38c835f5a29115e1c9b3ddf45b86
+GIT binary patch
+literal 262
+zcmeAS@N?(olHy`uVBq!ia0y~yV31&7VBq6mW?*1oQq%EaU|`@Z@Q5sCVBk9p!i>lB
+zSEMj7Fi4iTMwA5Sr<If^7Ns(jmzV2h=4BTrCl;jY<rk&TerF@az`$S};1lA?z`)=+
+z=|2MlgMwF=ynDZzPoG`&Tl4b!X5|m88$Mb$ezb1>YSa7$jK0~le79-&zVJ@rBL)Tr
+zfs!D<U<P&`2}x<$h^T_XQ<rXi{?cOf*P4NW!NSwUF+}3>)sqJq8x(k$5143lv7Y^R
+z*~(!v!*|;iKR$6X6s568Y{|}S<NOpOWmchGD^pb)a7(AI?i-uWio)Cg29Ud4{an^L
+HB{Ts5HJ4d?
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/spin-rtl-down-active.png b/src/assets/gtk-2.0/assets-Aliens/spin-rtl-down-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..c5daa82c929d50b2d48c438374f0ecb8e7061412
+GIT binary patch
+literal 258
+zcmeAS@N?(olHy`uVBq!ia0y~yV31&7VBq6mW?*1oQq%EaU|`@Z@Q5sCVBk9p!i>lB
+zSEMj7Fi4iTMwA5Sr<If^7Ns(jmzV2h=4BTrCl;jY<rk&TerF@az`$S};1lA?z`)=+
+z=|2MlgMwF=ynDZzPoG`&Tl4b!W)=6X8$Mb$eza-+YTf+Rruhp9wS2Q_`M&O4cM<~w
+zgFs1;UoZnZkA$SOY(!*1;mOmNZhg^;4D(}PU@-A?aSV|Nzk1T0kwJln`M`#B??0<u
+z84M59@~2Gs5GkW3JKOj85^>3cFKoLVOtlyeMLh52RyfKQ<k)aqoB`w}S3j3^P6<r_
+D-N#fK
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/spin-rtl-up-active.png b/src/assets/gtk-2.0/assets-Aliens/spin-rtl-up-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..321768d503b4b255f84c691db28b575203fc7fcd
+GIT binary patch
+literal 246
+zcmeAS@N?(olHy`uVBq!ia0y~yV31&7VBlk6W?*1Ae(j(y0|NtRfk$L90|Vb-5N14{
+zzaoW!fkCpwHKHUqKdq!Zu_%?Hyu4g5GcUV1Ik6yBFTW^#_B$IX1_lO$0G|+71_lO)
+zhW`u<3<_RdYCe574eu-}9$7VfvTA&9-Tc+2`KxvF7n`OpHZ9+5TE5$~d|%>iyOn`~
+zfxjfkFPMRYM?zXIyr}r}nJYKHd|BMIM4N$uLC4d@F@$4ga)QA8@A7OC5#Rs27cBX&
+wqJ5CT`M;nlOM0!4(DQwQLeKXL#ab{NbT`sTcU;8Jz`(%Z>FVdQ&MBb@058o_j{pDw
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Aliens/tab.png b/src/assets/gtk-2.0/assets-Aliens/tab.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..d60478ff75b602f810ef2242697a35967676e1b0
+GIT binary patch
+literal 127
+zcmeAS@N?(olHy`uVBq!ia0y~yU|<Ac4kiW$h6&}t_ZS!$I14-?iy0XB4ude`@%$Aj
+z3=9mCC9V-A!TD(=<%vb94CUqJdYO6I#mR{Use1WE>9gP2NHH)l@OZj7hH%IxZ^-<~
+b$H26mamUN)FK;j~Ffe$!`njxgN@xNATh1dc
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/checkbox-checked-active.png b/src/assets/gtk-2.0/assets-Dark-Aliens/checkbox-checked-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..a754b103f9978d740b3f3ba49b184ab00b1ad620
+GIT binary patch
+literal 522
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLFfG6*#Fc@8p`qb_
+z=&Jvr4OcxU-ImbykT(pJHw{s?j8L`+Q?W_$Z@(7Uam~NudSLqv-<E4Wt=IfouKTuL
+z_iwxI-+JAz?W%vv75~<2uI2mv+OGJvUiNFf;#qyvv-+r4-AV7d(_VF_yc^DV*Prog
+zz2e(?#kb|EZ_8!hmMeZ>mA*|E{hBZPwp{iD310GpGA{pM3e;g>U@$BR@(X5QVrFAE
+zwY0Lbb_kD%ijIwoPnbAq^3<t|*RJ2NbJx)`=dNA9bNAkZ2M-^9{`}?Zw{L$Hq>}j<
+z7#MbVx;TbNNX|X@Hmu1(#Nnd157*D!WsVJf3Ync{_x?Zq)VG19Zr663vpSC-Rp~xz
+zo!IxX^H!k}zrJ+TwRt9HC2N+LElt<yv%DBA73h8I&283ai}q#QY}XX%v|_Nob5r5r
+zGJ(>z(+bWv6&&Zfh91b9!D!}FSm!Fc<0h|h&Wxhz-CcpV52jBD=yuU9*tVXtccw=1
+zk)MkLe?9VfA?caxdwjRa9{#AXc{V-XS@)G+es~@j7g}lZ`Dx_;bUpLQ!Ly!3GB7YO
+Nc)I$ztaD0e0suky<$wSH
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/checkbox-checked-disabled.png b/src/assets/gtk-2.0/assets-Dark-Aliens/checkbox-checked-disabled.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..b52acf5da4a6480a3e152b65daf10d74c4c58d93
+GIT binary patch
+literal 474
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLP!Zr0;>rL5{~7-O
+zZ)o@*y6S(z{QC*>|A+QHPMi5ZdiJ-7sox^z{STe_Jr0Ea$ISf|HS0^%tX~n+zeddY
+z8a4Y@+}v+5v%ba5`yDs;cg*bXQFDJs&HE8K`$x>2AJMa*WbB+D(X)R>&G{BJ=V#<B
+z5E(Q3r`X|oJq88_jglb0U<O7;CN>TZPA(Z)Svfg5eFFnSLt{%TD;rx!7grBYZy(=~
+z(9p1m$b0|h8!|93toL+r4AGc4cj8H*CIbN%=|X1F@PeZoe*OE;Z!3}PG?o2rblmbP
+zBiWbnM<Ww=ofBDY@g%c1bZ%9}mgAT8irfw)J}#2b*jW5}Vc_1l39K9DeBUrdMYgtX
+z{@lixNg<49fB*Z!lAz+r`(<+X`Aij0-GbS14Mk<gjJ4K0-qEYYu)~kf>^N`yUcT!a
+zAL}%+${%LkAExxyX<yk}x9Iu#c3ZtYpMDZ%?V7$bGkUT<Tm0|ld5KLr9rC5kdq5%W
+M>FVdQ&MBb@04H|JH~;_u
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/checkbox-checked-hover.png b/src/assets/gtk-2.0/assets-Dark-Aliens/checkbox-checked-hover.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..41cedc1c9a0f5987fd44da3aa79cc23269982620
+GIT binary patch
+literal 522
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLFfG6*#Fc@8p`qb_
+z=&Jt>tN!P1`+xq?|C6_WAG`DW)Pw)W@BH3<`FGK(pCzk*7OwhPyy9oU@?ZHYeibhJ
+zRj~Y5(aK*%D}EKO_))y#NAb#E4V!)yuKH25@<-9CAGPa$)~^3mz5ZAAx?h!Re^#vh
+zS+VA4@v5Iit9}-({8_Z(NAap3B_Q;(c;(NMRY>IOUm)(PpRZR2$TKi77?uS21v4-)
+zv$306T3J~;ghxb0$Hv7cOq?`%>eR(+*KgRl>*$$t*RJ2Wd+))6hYvr0{_^$Px4#Nf
+z$$Sh93_Cns977}|=N^0;*5n}KaM9a`>u2sV$A-RyjLx!q|DS$(w1K5=*LIt;I*%U}
+zX+CP5*!Pn2xy8ix>Abqx{!-FbVUK)XN_wB2^Fp(Cg=+4%w_L@6@mt;;7U^)2ZHRxD
+zGoc{3!|HJ9goQa17Mxq8m0*5`L3-JhIv3d;H+hY7W)w~D?h3qpFnz)UmqlV%wyo#v
+zovBg0<eU5AFH6l9rmLKr)mNTbA-`pfO{K(ii~GtiKRgeN3#~Ny{50}^hKKpoM^`Ug
+RXJBAp@O1TaS?83{1OWSk2*m&Z
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/checkbox-checked.png b/src/assets/gtk-2.0/assets-Dark-Aliens/checkbox-checked.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..68654954ebebe03889646e5685f1e3a7765eacf4
+GIT binary patch
+literal 512
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLFd@Jv#Fc@8p`qb_
+z=&Ju|GeKnNod2=YKS$2~k}&^E%*?NGGrvd8{uwjpCy1Q&GkW&Vs5w7lz>JtVKcZ*-
+zh@Sl;224iH`Vlkxd-Uw@F>}60&jyKuq~`pHp8XTV1*?gk{UZu26$2(A+Cj1qE|?5!
+zz4wQKfkD3{$S;_IiJ6s6NK9NpQqDghC^#fEEWD$$tGj3Nl4Z-+uG@Y1==lrRZ`{0n
+z=kCW(pTB(l`)y-|F#`j`HcuDF5DCe-2XBWpF^ITc^qt^z@2m+&2-C-=ZU6qi|D?dv
+z=>Gi5={>1a;@4Mh`EbS1HqhGd%a?5nQ{S%GxG;I?tts<1YTfIccW83trD=6{67)Vh
+zpU$7au<#6{#pemX49j<(Va;pSRr{KJ#&sFXx5K&<*f^(dKGV4SZ-KXzicN}<V4C@l
+zZ^>B;&orHSXS>XB^2ffAe;Fd{w1lhNR;_*cBjoVUMX66;WX1$&yS*xSo)|VQ(xUk5
+bs(L|J)0u8MZyXsI7#KWV{an^LB{Ts5yj%J(
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/checkbox-mixed-active.png b/src/assets/gtk-2.0/assets-Dark-Aliens/checkbox-mixed-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..89ef64d3468d1041aecde7d20bd615a051ecbcc4
+GIT binary patch
+literal 445
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLP#xeC;>y6l(9rNd
+zbk+aRhO3^FZZj}2Xu1^#v|jaZzZTeWEuj5+VEYZ<mTNw(*Zf+p`?g;9Yrp2-cHO`A
+zx?k%R|JG~%tyle9ulluJ@oTy4+j`lr^@?xn6$t6uauvjAx$FlPhq7BPgH*O$_HDU*
+zKw^<Q0|SFbNswPK0~0eFyP9iQctm7$Y+QW8go%@;OkKTZ?Yi|FZr{0k@BV{_4<CK`
+z`t9G0^uRy{28Mo57sn6@$+-t#i#a(+uwGEU-0BhNIni71`QP~l^G&B6`;(pj$JaIT
+z;&<1wAOjictgZb=pPiELY`!_QP2$!>Z8^17&rZ2Jx@>6?@Q(`Wm^6)P(c-1e8J4$l
+zx5~Qf9+^E&=8@xR-bXIp3=hL%GDXzvd=JY-IUSZXR)3bX!y=+Wbn7REX6a>>*Z00_
+d?5?k6^q13TzB)gAIs*d(gQu&X%Q~loCIA3_y$k>V
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/checkbox-mixed-disabled.png b/src/assets/gtk-2.0/assets-Dark-Aliens/checkbox-mixed-disabled.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..a5aeabf5ff0db1d827124bcb24ea8b9419d3a79b
+GIT binary patch
+literal 398
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeL5F6kV;>rL5{~7-O
+zZ)o_RH1~hp^#9SbzeUgfA2Ib?#JvBZGrz}y(EpgZzoKS+iJJ8*V$Rpd8Q&u3ev6y?
+zEoRoYn0dcrX8wqo^CNoJkJvdsqG$h%n)5Ac&d-?H-(qI}Z2O_n!N9;EUlQaO%)rRV
+z#49Z$BP%N>C#P><U}$M+X=UZ@?c*B~8X6hdV1E7p0|P_5r;B5Vgyh_VkwVQ1A}j|C
+zCBExkWD%JATi)1?`?NxR*<-V-K2?!lLbO@9yw5+gux0!AQdowK&8mV`-{{Shr>&s^
+zyvm|S+9wJgGFYT2qs*7|Os#c#k+HLco5_(QC%6}-Eolj86Aw$AZoI|r;a8q57Ams-
+r*|Q%^k*rd4b_iWu_U^Zy=(}HxC8w2bE6Pq-gF?sC)z4*}Q$iB}Z#<iQ
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/checkbox-mixed-hover.png b/src/assets/gtk-2.0/assets-Dark-Aliens/checkbox-mixed-hover.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..32f67a03390e7d9860acbc2f3e9f01abe4627f7d
+GIT binary patch
+literal 445
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLP#xeC;>y6l(9rNd
+zbk+ZcRsVCh{r~^}|JKX@OIH3YTJ^JJ_0Qs!KZ{rVELi?4f5orDWxooR|0-Pdt7zq~
+zq7}c2R{khn`Kx&4&!Uw-3s?OpS_ww0eiW_xS-c9Qy$B@rqj=Si5)c9j7O(tSvI=Y_
+zSWOJmpT!Ie3>qate!&b(%xvsxu3_O3k<qbn@d*<qPMR`x^_sQo)^E6d=kC4x4<0^z
+z^yTZfe>2hp0~r_?`aNA7LnI{U9(*n4<RHO%LHTm4N1*3KZ@uS#=Nrs7op$U`cK#n<
+z*T{?CUCV+DWTdmU_8)zAO1`uC=F~QcTNAbA)K)z^<?iURrA5F$DyU=9G^Rz1mo{fu
+z-pbu7>#lob_B5GCj;DDaxp*@?42#JWQM2<sEEnZ;SkhSiS<()RhzilIpBS2@msMWh
+f`>wIOzLwEnPM`Ve{P5`v3=9mOu6{1-oD!M<!|l;O
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/checkbox-mixed.png b/src/assets/gtk-2.0/assets-Dark-Aliens/checkbox-mixed.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..d247e4bd9ceb3f650631302acc51acce02d05493
+GIT binary patch
+literal 439
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLP!Zr0;>y6l(9rNd
+zbk+Z~nIJN1#*dg;KcZ&;jG6N@de+aFSwEv^|BRXgWkk>Z9y8}h^sFDzv%v@~8#DWR
+zG#JIq`3@DI{Ud7jkLWodH8BvC7-UTNB})bd2KAC4zhDL?W>z*;KmUNh;E>R;@b-?*
+zuAW7Umn>bj{Mz*!H*ej(bNAk-&tLv6b}l=^z`)S!>Eak7AvyQpYcVGW3DyhBi;Hx%
+zG>bate6K(JYt2TJXY==Noaxo|>hsF3h=T$pSEA&*@3z((v2W())!fpc?d}tDdg}Hj
+zkBm+Qxh+owOm#(%IGkp<`1yGAvyaQ$D=r2(-O1ePbYx45K;Gf0eu<ARo4i|?YBI;5
+xI7si<=H{at7lz3v6fE8&)An4qWaCxwWemF0ne&vj85kHCJYD@<);T3K0RT)b%Ax=O
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/combo-left-entry-active.png b/src/assets/gtk-2.0/assets-Dark-Aliens/combo-left-entry-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..38d3181ce1f1cc5354aaf26308aedd6bb9718e14
+GIT binary patch
+literal 327
+zcmeAS@N?(olHy`uVBq!ia0y~yV31&7V36TpW?*3OvFN|Uz`(#+;1OBOz`%DHgc*<L
+zuSj8FV2~_vjVKAuPb(=;EJ|f4FE7{2%*!rLPAo{(%P&fw{mw>;fq}s<z$e6&fq}tu
+z(*K0{|NsC0zv|Tg#b^F6JoZ0v-nY0#-?Ntd%wGC4Yw^#7xj*9P{Q!}3f5guD89V2D
+z?3^Dlvwy_S0il>VKcZ*<fRK?9mbPH)gZzRS*g1G4B&B8L!XqLJ3X6(Qo<4Kw%FSC}
+zzD(O?v6g{>A=J~wF+}71+e<qc8x$CvFDg_#=#`oDSG<%VDgR-9{7i-y-wHN!&JYTH
+zA+))C8z=kc1lJue*0y*pZ`@*E!x7icHODkZ=NFIKCY`+uJ%RFk2CpNdD;SnI2*>(e
+RU7E=N@|dfi%Q~loCIFRPhk5`2
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/combo-right-entry-active.png b/src/assets/gtk-2.0/assets-Dark-Aliens/combo-right-entry-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..2f3afab45c2e75350b3c609a6d402dd74b56735a
+GIT binary patch
+literal 337
+zcmeAS@N?(olHy`uVBq!ia0y~yV31&7V36TpW?*3OvFN|Uz`(#+;1OBOz`%DHgc*<L
+zuSj8FV2~_vjVKAuPb(=;EJ|f4FE7{2%*!rLPAo{(%P&fw{mw>;fq@|;z$e6&fq@}(
+z)ql@P|NsC0zv|Tg#b^G{J@S9yvHvNvza`H5HuK2$?4>_5m;B6H{3~JpkA%5D;^+N{
+zo%1tx&d->+KV#?oh?)H(224iJ{t*pkN6-GDuyRH^0|SF}NswPK0~<S!grt<TjI3Nl
+zR9t>R;fa%{E?&Cz<nxy=5x-ksGcYiOd%8G=Xq<n0X**+sfq?VH&HR&ni<q|jpU0DM
+zG5EvnaIdCS+Bsn^2fUg)!c2qRHnD{4?wQ(jjzdPqkB{rm2gQv0ZJ#VOdRVy`pK~vI
+k*xqeh{b;Yg+Y`piMk2*$HCOgBFfcH9y85}Sb4q9e059E;I{*Lx
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/entry-active.png b/src/assets/gtk-2.0/assets-Dark-Aliens/entry-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..9d78ebb00dba33c4f460929d361574a4001e9ae2
+GIT binary patch
+literal 423
+zcmeAS@N?(olHy`uVBq!ia0y~yU@%}{V36TpW?*0t*mULx0|NtRfk$L90|Vb-5N14{
+zzaoW!fkCpwHKHUqKdq!Zu_%?Hyu4g5GcUV1Ik6yBFTW^#_B$IX1_p+r0G|+71_p-E
+zRsTIF{ZE+x|NsC0t4{r2eCGe$BmWm3`=2uVTjIQLaf`msJn}tj$<OSiKeHD9%v|y_
+zYw@py`9Bio{)nFkCg=W$o%1tx&d->+KV#>7kDc=)cFvEO*&q_c0JEcK|A?ObBW4bW
+zOsvugWME)WEeY}qW?*CI;E|A&l9rK`lM9cCjEc)IC@d;Iaq`sZGZ!yixq0i!=PzGM
+ze$*5(Ffg=wx;TbdoPK-7Tdc`Iz~!QnN{5DqyyygnhAaQJzYyzM*>3&Ld=1-#eaGfD
+z)xO|ixRZ9OhH;7U^h=SAtC{v5ob8?GTA9$T@2y>3<gny&bC0w~HA5v^`iJue7c$1~
+zNK9GEZdzT!^GSHe`kVxt!^)G{V%N_RTJYhQ^6YgC3AgODu7A9&a)AGKs(H)Fl}vXS
+Q7#J8lUHx3vIVCg!027D5wg3PC
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/menu-checkbox-checked-disabled.png b/src/assets/gtk-2.0/assets-Dark-Aliens/menu-checkbox-checked-disabled.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..324c8262f9a4d39a0ed32b0737b38ccee577a1f4
+GIT binary patch
+literal 433
+zcmeAS@N?(olHy`uVBq!ia0y~yU=RRd4rT@h1`S>QU<L*T&H|6fVg?4j!ywFfJby(B
+z0|SF(iEBhjaDG}zd16s2LwR|*US?i)adKios$PCk`s{Z$QVa|X6#+gWt_%ze4GsT8
+zXTA%a`9E#u|AhYcv5Wpk&i;}x|9{NP|Dn^rMbG{gG4Fre%>PmIe#FoG5i{pU#GGF-
+zGrz{n`xQ0&Yt-yt5i`EV&ixfV>uc29-;uMw$Ikv8HSb5%>>shSe?-sz88zoy)SRD@
+zvq0uV&H5HK>u1!QpE0w4x-Q`a*{x9$<QL4q#Lv$!ASNy$DJ>%_r=+Z6Xk=t;Y+_>S
+z=;Y+$<rNYd8WtWA5fRBRaW9mCfuYUQ#W6%8+_(QWQ<H*#i}=<})k;x;3tD#k|KGmR
+z;Yj5p9-a*h^Lj5Fd$F&PWA}QA0%h)hhkBMgX=H7FzdrRr){D(E!jy_G+}ti+A91kd
+z$38v#<DE>^7P|9e3*-ZizB^wyU+ZB|^`522Ell{hV^|HQH7;0xdcXZ+1LrKugO~Q0
+hhJRkOtLs|)-M!M+&l{^9VPIfj@O1TaS?83{1ORy8xk3N{
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/menu-checkbox-checked.png b/src/assets/gtk-2.0/assets-Dark-Aliens/menu-checkbox-checked.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..8373e47152e52bcc7b94a70faced131dff2f6496
+GIT binary patch
+literal 461
+zcmeAS@N?(olHy`uVBq!ia0y~yU=RRd4rT@h1`S>QU<L*T&H|6fVg?4j!ywFfJby(B
+z0|SF(iEBhjaDG}zd16s2LwR|*US?i)adKios$PCk`s{Z$QVa|XT>(BJt_%zeX*2(a
+zuKMpe>3{URpOLeE#?JW}J@aSG?C-I&zemsg5k2ci<eVQ-vwucI(46nlv%bg7`4Khe
+zN6ah`89n<))T|%Tvwy_Q29eQVGHNzRW6T_w$Se>SA_XBq3cxBM-00aqws4kCWME*>
+zEeY}qW?*Gw*V5L}b#QX?^z{!3PfAVi?VB)h@|0=QckkJ|@9^a-S3iFG{N?M9pTGb7
+zm6-Qx1_J{_x2KC^h=io?L3W`g0|u4@$|2TTXPcOuTqgbg|D9)nPnjXt=BQIvyavVk
+zvxGxAB;GZ52QlopG>LiPGS{CTKh>|R&Rp=YzbDBzEaT+!LWNY3>`A&&pElp+e;>Lg
+zbI*kdZ_L{@uE~UYWPaH_`I(C2f{Z}9fD4lt1<LjE_;@C2`-MD9c%~kDJv5#Fn7GnQ
+X1+m$J$EGqcFfe$!`njxgN@xNAcg4?D
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/menu-checkbox-mixed-disabled.png b/src/assets/gtk-2.0/assets-Dark-Aliens/menu-checkbox-mixed-disabled.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..62f43ce6680a3e3015ecbbb7b4d027436c030690
+GIT binary patch
+literal 347
+zcmeAS@N?(olHy`uVBq!ia0y~yU=RRd4rT@h1`S>QU<L*T&H|6fVg?4j!ywFfJby(B
+z0|SF(iEBhjaDG}zd16s2LwR|*US?i)adKios$PCk`s{Z$QVa|XegQrqt_%ze4GsU3
+z=Kc?z`7U(k|FoI^6Z+pr%=r~F^J~n!Us1EaM$P^eG2?6O++WeNzDCXc9Xb1Z?CjrB
+zvwy_S{t-R<XVjc;QFDGq&H5QN=V#39pUNHEHZU+SNR<Tn1v4=5^7Hcx7#bNF8=IJz
+zIyyOdd4+_AMnpt@blu;=z`&5<>Eak7AsKp*o3B|x#P#6kKi%85E_ihJznizAp~2z%
+z4-Qqf?R=iL-a9g;_sG7g9JW275eYj&I%NH(b}s089*~+o{mKN>No7r1^CG8Cv|A+*
+y9T8g4kXu#Lb7a~I9jnLJeE(VexiRSv!?Bq{&L&sciWwLf7(8A5T-G@yGywo9fQ^v=
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/menu-checkbox-mixed.png b/src/assets/gtk-2.0/assets-Dark-Aliens/menu-checkbox-mixed.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..b1943766d46b1b7cac3590eb07a66d728e8710c9
+GIT binary patch
+literal 363
+zcmeAS@N?(olHy`uVBq!ia0y~yU=RRd4rT@h1`S>QU<L*T&H|6fVg?4j!ywFfJby(B
+z0|SF(iEBhjaDG}zd16s2LwR|*US?i)adKios$PCk`s{Z$QVa|XQ2{<7t_%zeX*2(a
+zuKMpe>3`IWAJOxEM$Y;fJLhNg%%4$ne#FfB5jE#W^z0u|vp{6bY!Dd@CZlHmhz1LS
+zxNrto3M4Z7M|sAw?F<YIvL!)&!3?Zy?5bMYI=a1m6DCfcGHv?qJ$v_EzH;@`=P!T$
+zeo}S=IV024#W6%eGV~xPU$X*(>p}H*U1hF;f4=WeTdBsD_T%-NP47?NDAJT~_e(T$
+zc^baGpK+d-&jnep7Pi%A4y@`)4nFo+HFS=a=e$tK<12jprKfP1p7Dw}u&1<I)Fq9}
+liZ!|*lWlwMy7irPS@T7Mug;(8&%nUI;OXk;vd$@?2>`dQnlk_Z
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/menu-radio-checked-disabled.png b/src/assets/gtk-2.0/assets-Dark-Aliens/menu-radio-checked-disabled.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..56a800eacafb500663727c64e38d2d0995d15efb
+GIT binary patch
+literal 375
+zcmeAS@N?(olHy`uVBq!ia0y~yU=RRd4rT@h1`S>QU<L*T&H|6fVg?4j!ywFfJby(B
+z0|SF(iEBhjaDG}zd16s2LwR|*US?i)adKios$PCk`s{Z$QVa|XQ2{<7t_%ze4GsT8
+zSN->$`OJ6b|InH5LTCO@oB2PX|9!-qUokVk#?1Q_HT!GS>|YTxzQ)e|6+P=~<gD*8
+zv%g2p{T(^`d+hArQL}%<&i)ZS`)AagZ&7o8M$P&eHRor{?4McJZwWInFvyhz`2{mD
+zadL6-^YaTB8W|ZIo0yo|J2*Nyd3l9|hDJn0axT|3V_;w?@pN$vk&p~M$SKsUAi#3q
+z<^$a<C!Pfs|No~&tlhLhde!E{`-g8lQaXJwcoyr-KNZoe2WGc&zTguJVm{r@*!b$R
+zQQs-$Ajt)bx;jGGR;*BBnrb|C@h6F&7Z&^KERmWKxq%_&>09j+DPA_J+B-~|@0;Df
+ce&V0#XOZJmHa!2xz`(%Z>FVdQ&MBb@0Qkh27ytkO
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/menu-radio-checked.png b/src/assets/gtk-2.0/assets-Dark-Aliens/menu-radio-checked.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..68b50515d813e3160ac6ebde7e999a4c8b72f217
+GIT binary patch
+literal 398
+zcmeAS@N?(olHy`uVBq!ia0y~yU=RRd4rT@h1`S>QU<L*T&H|6fVg?4j!ywFfJby(B
+z0|SF(iEBhjaDG}zd16s2LwR|*US?i)adKios$PCk`s{Z$QVa|XnE^f_t_%zeX*2(a
+zuKMpe>3`hxZ_%^AMa=saJ@04ate>%Sen!vy88zoe%&Z?#bACk6{t-0`M8?bpk<qh$
+zM1uvR!Q80XKR_a2Hi7}+f=R*nmG>DK7?eta{DK)++1RCJWVN()bbI?IOq@Jr+Vm~k
+zw(s7vci-hJS3iCJ^5^fd7s|E_3=9>XE{-7*lA#AVg_;!vSPlp>-^&mxUZ`>Izr1AF
+zYMnQ2E8cEd7aaa@!hQ31hZYDtwV$_->p*j-+zN9wC(hH|V#Y^5FLUQ&_g~29{P3Zs
+zNrHw=T36s~@mA;K-E5%=N+Jgiw6HF)v)OCxvWou>>+FXC+wvk~f)#!-3(SzHnXpBl
+Rk%57M!PC{xWt~$(69AyisX_n%
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/menu-radio-mixed-disabled.png b/src/assets/gtk-2.0/assets-Dark-Aliens/menu-radio-mixed-disabled.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..62f43ce6680a3e3015ecbbb7b4d027436c030690
+GIT binary patch
+literal 347
+zcmeAS@N?(olHy`uVBq!ia0y~yU=RRd4rT@h1`S>QU<L*T&H|6fVg?4j!ywFfJby(B
+z0|SF(iEBhjaDG}zd16s2LwR|*US?i)adKios$PCk`s{Z$QVa|XegQrqt_%ze4GsU3
+z=Kc?z`7U(k|FoI^6Z+pr%=r~F^J~n!Us1EaM$P^eG2?6O++WeNzDCXc9Xb1Z?CjrB
+zvwy_S{t-R<XVjc;QFDGq&H5QN=V#39pUNHEHZU+SNR<Tn1v4=5^7Hcx7#bNF8=IJz
+zIyyOdd4+_AMnpt@blu;=z`&5<>Eak7AsKp*o3B|x#P#6kKi%85E_ihJznizAp~2z%
+z4-Qqf?R=iL-a9g;_sG7g9JW275eYj&I%NH(b}s089*~+o{mKN>No7r1^CG8Cv|A+*
+y9T8g4kXu#Lb7a~I9jnLJeE(VexiRSv!?Bq{&L&sciWwLf7(8A5T-G@yGywo9fQ^v=
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/menu-radio-mixed.png b/src/assets/gtk-2.0/assets-Dark-Aliens/menu-radio-mixed.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..b1943766d46b1b7cac3590eb07a66d728e8710c9
+GIT binary patch
+literal 363
+zcmeAS@N?(olHy`uVBq!ia0y~yU=RRd4rT@h1`S>QU<L*T&H|6fVg?4j!ywFfJby(B
+z0|SF(iEBhjaDG}zd16s2LwR|*US?i)adKios$PCk`s{Z$QVa|XQ2{<7t_%zeX*2(a
+zuKMpe>3`IWAJOxEM$Y;fJLhNg%%4$ne#FfB5jE#W^z0u|vp{6bY!Dd@CZlHmhz1LS
+zxNrto3M4Z7M|sAw?F<YIvL!)&!3?Zy?5bMYI=a1m6DCfcGHv?qJ$v_EzH;@`=P!T$
+zeo}S=IV024#W6%eGV~xPU$X*(>p}H*U1hF;f4=WeTdBsD_T%-NP47?NDAJT~_e(T$
+zc^baGpK+d-&jnep7Pi%A4y@`)4nFo+HFS=a=e$tK<12jprKfP1p7Dw}u&1<I)Fq9}
+liZ!|*lWlwMy7irPS@T7Mug;(8&%nUI;OXk;vd$@?2>`dQnlk_Z
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/progressbar-progress.png b/src/assets/gtk-2.0/assets-Dark-Aliens/progressbar-progress.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..53f181782ede5d4eb3a679f04715b7cc57723b31
+GIT binary patch
+literal 136
+zcmeAS@N?(olHy`uVBq!ia0y~yU|<1Z4mJh`hLs=Z)iE$Ia29w(7BevL9R^{><M}I6
+z7#J8NOI#yLg7ec#$`gxH8OqDc^)mCai<1)zQuXqS(r3T3kz!zA5cPC%4B?oW+%xa*
+kV|!+ygd_*%7FLG+mzlou$w%H{U|?YIboFyt=akR{0Odj^KL7v#
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/radio-checked-active.png b/src/assets/gtk-2.0/assets-Dark-Aliens/radio-checked-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..ecf1b4ca9a6b06578ef44b773da3a5f868f596d2
+GIT binary patch
+literal 478
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeL&=uel;>y6l(9rNd
+zbk+aRhO3^FZZj}2s9DFTTE(l_CI+-#^>4ox*l{hO{d!>g4d0e)KCRdMTCV%HUiWLi
+z=HGVRzxBFb>lOdjYyPcQ{adg4wO#RRx$N6|*{}7AN6m51niC#1$9!9___bc~ZN1{#
+zauvjAx$Fm40A;sa25D)z?Avm=*{os)0|SF@NswPK0~0eFyPB<?eOP!zWOQs?e8Pl@
+zlcr2vy=LvY^&9pdJaqfc-Fx>RJbd`*%hzxJE@{;CF)%R9@pN$vk&v8w@U@teg9PgZ
+zWo0hU@|UYZ9_{)6daK>xOCQePlkh#788$6)SBODNzF8cj)nwWKIl5cQOmZ%8+<d%v
+zS=^hS8XYs31&?$xa~^5FRrxAzMXCU+>GeXJELIoCv!ycqQH&oKlojsP-pcdnM5FDI
+zNzB|F*6HV?7m8g7IeX#8r43G}Z*2%(t6TDCPVaLWHfyhU_us$Wu)**e|MYJr`8~@j
+S)fpHV7(8A5T-G@yGywqQebO8N
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/radio-checked-disabled.png b/src/assets/gtk-2.0/assets-Dark-Aliens/radio-checked-disabled.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..c56bfaa7cacaf0e64c8b2aaa367cb47fa2a61431
+GIT binary patch
+literal 428
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLkQv|;;>rL5{~7-O
+zZ)o@*y6V60%xAtc|Hn=LA3gh9^z8o;Q@=&b`yV><dmIS;kD2=`YSx#iS-&FYe2tv(
+zEpqO+xVhhAW_^p9_d9ad_n6t=V`lz{ne!uh){odZKcZ*<jGFT;YR=D?+23Mj|NIr<
+zcaVXBLAfNzFPMRmk%^OwOIk)oR#r|<PT#=5(9+V<%F5os+uO%CBs4TKGCV!jj)8$;
+zs;7%%h=k<agONf_1|lp64stZDS+rnAOX|CNkJmE;Bz|m`t`81f|2*>hQl|%5FK_b9
+z4n8fvon!U1Mz(uXtu^;edD<5$Aj;3xq0Vo`;rzU`kKIZtX^Aj1=UhQ3b?AcRqm%`U
+z6|3a#D0;~~5ja(FT&pIPM_0VUoGok3qPE#f`!;y;+D=wl(B<cU`S(QaKd+frORDb)
+SU@2<=g`KCXpUXO@geCyB&#X59
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/radio-checked-hover.png b/src/assets/gtk-2.0/assets-Dark-Aliens/radio-checked-hover.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..f808fe1ed58711b04e694daf231d706ee03e8e10
+GIT binary patch
+literal 478
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeL&=uel;>y6l(9rNd
+zbk+ZcRsVCh{r~^}|B;)&4_^Dd@A~hOl|PGC{VZAivv}pt;uSv&mjB9M@vCszuY%>j
+z3RnFqTKTJJ#jm23KZ;lWDqi`sXywnsRX>VWg3+oU)$4y%ulrTC?nlw8pT(;{<`jX{
+z{3u@aqXdLNg2gL;maGCB4p#Hdc+)Kg1_s@dAirP+CT2EvHCsFTu<(e;=-9aUgb5QT
+zO_{oS&DwSAH|#%n==Pnv_wGM<`0&w}uiyS%(x~ZUU|^Wz>Eak7AvyQpYcVGW3DyhB
+z%3Pl1FIR;;+VlVQR=dNOKAgWN;d?YQY+B^55QCO{vp7bp$+G`*bhnh5<Xqsm`FQcN
+zxHmsFI%Y5n9_eJ}Jkort@>Sf5Q~_4g>xDL1tS*jcOJ(|_7(Xs3E8MHSmFLlkM%yEk
+zn7KKu)6YjQ6uS^|_QH)z8=Owx+7P@}x8%>9-sduG)?V-Kzkj=7gW)y)>EBH9dzMwI
+RGcYhPc)I$ztaD0e0sy7a?34fi
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/radio-checked.png b/src/assets/gtk-2.0/assets-Dark-Aliens/radio-checked.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..c7db7a9b0763c4963f3a4704902075313ef7c312
+GIT binary patch
+literal 473
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeL&>r9u;>y6l(9rNd
+zbk+Z~nIJN5`nTxW-y-IHi<$K!YWB~VIX|Ok{fwFQGkW&Vs5wwZ^z833bACk6`Vl=F
+zjKH!nv%g1!QOun0AgMWEDTspEKcZ&;hz5(qz(k;WVO*QoJY5C`2Az^1zhDL?W>z+7
+z8CgI7fWY98(6I3Kj?S*0MT?g#UABD7w(Zxh-?(|}_MN-;K7Ic3PsJ~wmVtp`wx^3@
+zh=k<agD=IL0wh>3D4T1!x=wa$<$3;h{`#*wbz=YBl%BjYcTPyC5Ia{}>AA3H3(c)R
+z_@^u^UZCibeYR0lO6&1~aK{|WN6s;pMQs(qyU)(G-paCQ!7~QEtxQnrk?-4gJNUCW
+zkF+YgcQhzVb67uhSa;z=#wzg)SCcmvHadNKwYT-2R_g1`EeF4yU%#nlo|)OQUyKam
+X#=<_FOL`a>7#KWV{an^LB{Ts5V(r<d
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/radio-mixed-active.png b/src/assets/gtk-2.0/assets-Dark-Aliens/radio-mixed-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..89ef64d3468d1041aecde7d20bd615a051ecbcc4
+GIT binary patch
+literal 445
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLP#xeC;>y6l(9rNd
+zbk+aRhO3^FZZj}2Xu1^#v|jaZzZTeWEuj5+VEYZ<mTNw(*Zf+p`?g;9Yrp2-cHO`A
+zx?k%R|JG~%tyle9ulluJ@oTy4+j`lr^@?xn6$t6uauvjAx$FlPhq7BPgH*O$_HDU*
+zKw^<Q0|SFbNswPK0~0eFyP9iQctm7$Y+QW8go%@;OkKTZ?Yi|FZr{0k@BV{_4<CK`
+z`t9G0^uRy{28Mo57sn6@$+-t#i#a(+uwGEU-0BhNIni71`QP~l^G&B6`;(pj$JaIT
+z;&<1wAOjictgZb=pPiELY`!_QP2$!>Z8^17&rZ2Jx@>6?@Q(`Wm^6)P(c-1e8J4$l
+zx5~Qf9+^E&=8@xR-bXIp3=hL%GDXzvd=JY-IUSZXR)3bX!y=+Wbn7REX6a>>*Z00_
+d?5?k6^q13TzB)gAIs*d(gQu&X%Q~loCIA3_y$k>V
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/radio-mixed-disabled.png b/src/assets/gtk-2.0/assets-Dark-Aliens/radio-mixed-disabled.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..a5aeabf5ff0db1d827124bcb24ea8b9419d3a79b
+GIT binary patch
+literal 398
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeL5F6kV;>rL5{~7-O
+zZ)o_RH1~hp^#9SbzeUgfA2Ib?#JvBZGrz}y(EpgZzoKS+iJJ8*V$Rpd8Q&u3ev6y?
+zEoRoYn0dcrX8wqo^CNoJkJvdsqG$h%n)5Ac&d-?H-(qI}Z2O_n!N9;EUlQaO%)rRV
+z#49Z$BP%N>C#P><U}$M+X=UZ@?c*B~8X6hdV1E7p0|P_5r;B5Vgyh_VkwVQ1A}j|C
+zCBExkWD%JATi)1?`?NxR*<-V-K2?!lLbO@9yw5+gux0!AQdowK&8mV`-{{Shr>&s^
+zyvm|S+9wJgGFYT2qs*7|Os#c#k+HLco5_(QC%6}-Eolj86Aw$AZoI|r;a8q57Ams-
+r*|Q%^k*rd4b_iWu_U^Zy=(}HxC8w2bE6Pq-gF?sC)z4*}Q$iB}Z#<iQ
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/radio-mixed-hover.png b/src/assets/gtk-2.0/assets-Dark-Aliens/radio-mixed-hover.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..32f67a03390e7d9860acbc2f3e9f01abe4627f7d
+GIT binary patch
+literal 445
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLP#xeC;>y6l(9rNd
+zbk+ZcRsVCh{r~^}|JKX@OIH3YTJ^JJ_0Qs!KZ{rVELi?4f5orDWxooR|0-Pdt7zq~
+zq7}c2R{khn`Kx&4&!Uw-3s?OpS_ww0eiW_xS-c9Qy$B@rqj=Si5)c9j7O(tSvI=Y_
+zSWOJmpT!Ie3>qate!&b(%xvsxu3_O3k<qbn@d*<qPMR`x^_sQo)^E6d=kC4x4<0^z
+z^yTZfe>2hp0~r_?`aNA7LnI{U9(*n4<RHO%LHTm4N1*3KZ@uS#=Nrs7op$U`cK#n<
+z*T{?CUCV+DWTdmU_8)zAO1`uC=F~QcTNAbA)K)z^<?iURrA5F$DyU=9G^Rz1mo{fu
+z-pbu7>#lob_B5GCj;DDaxp*@?42#JWQM2<sEEnZ;SkhSiS<()RhzilIpBS2@msMWh
+f`>wIOzLwEnPM`Ve{P5`v3=9mOu6{1-oD!M<!|l;O
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/radio-mixed.png b/src/assets/gtk-2.0/assets-Dark-Aliens/radio-mixed.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..d247e4bd9ceb3f650631302acc51acce02d05493
+GIT binary patch
+literal 439
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLP!Zr0;>y6l(9rNd
+zbk+Z~nIJN1#*dg;KcZ&;jG6N@de+aFSwEv^|BRXgWkk>Z9y8}h^sFDzv%v@~8#DWR
+zG#JIq`3@DI{Ud7jkLWodH8BvC7-UTNB})bd2KAC4zhDL?W>z*;KmUNh;E>R;@b-?*
+zuAW7Umn>bj{Mz*!H*ej(bNAk-&tLv6b}l=^z`)S!>Eak7AvyQpYcVGW3DyhBi;Hx%
+zG>bate6K(JYt2TJXY==Noaxo|>hsF3h=T$pSEA&*@3z((v2W())!fpc?d}tDdg}Hj
+zkBm+Qxh+owOm#(%IGkp<`1yGAvyaQ$D=r2(-O1ePbYx45K;Gf0eu<ARo4i|?YBI;5
+xI7si<=H{at7lz3v6fE8&)An4qWaCxwWemF0ne&vj85kHCJYD@<);T3K0RT)b%Ax=O
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/scale-horz-trough-active.png b/src/assets/gtk-2.0/assets-Dark-Aliens/scale-horz-trough-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..2b0be866bbeb59c2f51d9f6322a7462b9b0dda8b
+GIT binary patch
+literal 161
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4mJh`h6m-gKNuJoI14-?iy0XB4ude`@%$Aj
+z3=9mCC9V-A!TD(=<%vb94CUqJdYO6I#mR{Use1WE>9gP2NHH)l=y|$0hIn))CrGd^
+zP7vu~YHARi?(*f0{C`iwj7%-|u+1|(N-t`FB`<)KuVP{OW$1p1fq{X+)78&qol`;+
+E03%^8xBvhE
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/scale-slider-active.png b/src/assets/gtk-2.0/assets-Dark-Aliens/scale-slider-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..a19b5a26b679902a189bd85aaa03ed90d30dc0e3
+GIT binary patch
+literal 516
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeL&=TMi;>y6l;IRLH
+z+RXo<4Oc@~{STe_E_CMqg#Pyl^WTTg`<yuMf9&+n5%a#q&HNrU=Y7<i?-A4AN6h~o
+zHSb5voF7p$K1R;^969S}_?*vCv%W;k`5H6tYt-zo(X+or&iEER>udC!AJMaaM9ujT
+zGy7-s?4Qwden!v!9tA=m@tD~^qGy2^pC6U(W?*2@E(!7rW?*4uW8>!+5D*m=la-T~
+zS5Qz=QPtMgF)%bTwy^Z<?CQRF>GGAEH@|%ScJ{=i%?u0-r#xL8Lp09U2Guh=83^nZ
+zSQzwkqNHNbkAL^|@Af8M{r!B~_iek&cQXp`n0H8YGhJ`6+>(6AJtpl^-$%)$>?g7N
+znzYXqvsSpLuM)^^E?86=b}cqsT=MOngX%wb+E%+1AI@FWeQM?d_SSb60tq_5IW2|k
+zVhrt;1SkqJR%R`|pmZ?gp=+DsuX$P`N4dA|*l^pYELi2u%7bZl6)L`PWX5fMYrFjO
+zpAV8je;x}a&emx9Ss%b~O({C()WZC4Mt38l{|Mjx=zPrS{x#N*Y&lk@|5A%Db22b6
+OFnGH9xvX<aXaWFE#Ojm)
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/scale-slider-hover.png b/src/assets/gtk-2.0/assets-Dark-Aliens/scale-slider-hover.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..842b5d7086b41d56d79dd4245598529e3984be0c
+GIT binary patch
+literal 441
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLkPzS#;>y6l(9rNd
+zbk(ZRhO42g{wK`;AKLdgcG3UPsjot({`Z^vI%)3z=p}EXm;8^K_91S{r^uO~BIbUL
+zp7|wu_V?)7KcnaTjG6s2W)6rEJ^M%W>>p9HzJnNZK<wz*KYY)AQDk6XkS_`H3ua(q
+zW@F>v<mTbw<>liO6c&-vt*EFxb^6TN%U3>q`Fck}k%@tUVZEn|V~EDY+Mu^$O$t1+
+zs!NtO#Ak~9`j;=6%OPh`^8diQ)Hg<K4hf4Ud!6hvwrIX;^`Nk`X6YBsRaO-Xg*oc&
+zo^CxRv#iMRua3!<_s>gjUt76+MIq-F>3i0PctnijcYfa!tkLe={(294kH;2;!dllv
+zM<=GrO@SMpXp7s$X~el6UB1UceYe`?YMTp7_<3|C#k1!x&iDMgzOz7g%iceMPuG{0
+l=1ttMUVNyq=9Yn7ypxBL@4gdt#taM$44$rjF6*2UngHTLyO00?
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/scale-slider.png b/src/assets/gtk-2.0/assets-Dark-Aliens/scale-slider.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..b64df8d0bdbd22843c1fc619e232bda140a0b348
+GIT binary patch
+literal 290
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4rT@hhU+WOo?>8N;4JWnEM{QfI}E~%$MaXD
+zFfcGkmbgZg1m~xflqVLYGL)B>>t*I;7bhncr0V4trO$q6BgMeLU>x8R;>y6l5W4EW
+z=cNB})4#>c`4K(qN7U>e(X)So(43#qv%g2r1_?&b`T=5qq<$>odvlh7fkB`o$S;_I
+zja@n?H}BZ-6DQAK`1tutt#tY{1_p)@PZ!4!3CXhu8+jWPcvucBU!ZjK({KN5C!gRs
+z4c2db&sF#Q7WnhzoTstarJsS0C6`29de<o#SvjYa@Go);7nChwov2|yYr~0Cp2l@S
+gE7QU~Z`|T$$!5E-VpFgh0|Nttr>mdKI;Vst0N%B7fB*mh
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/scale-vert-trough-active.png b/src/assets/gtk-2.0/assets-Dark-Aliens/scale-vert-trough-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..7ad0bdf3055bd134b1a37d88817087efa8e75473
+GIT binary patch
+literal 160
+zcmeAS@N?(olHy`uVBq!ia0y~yV2}V|4mJh`h6m-gKNuJoI14-?iy0XB4ude`@%$Aj
+z3=9mCC9V-A!TD(=<%vb94CUqJdYO6I#mR{Use1WE>9gP2NHH)l=z6+1hIn))CrGd^
+zZdj*K^{xN^#m)79)Lr?7*UA`Y9bCb>Sd2%V+wGvn0vQGdD|Ob7uaD|fGcYhPc)I$z
+JtaD0e0sutiFbe<x
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/spin-ltr-down-active.png b/src/assets/gtk-2.0/assets-Dark-Aliens/spin-ltr-down-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..2db703e4dadbca8bbb7971d917fe6746ffba0377
+GIT binary patch
+literal 243
+zcmeAS@N?(olHy`uVBq!ia0y~yV31&7VBlk6W?*1Ae(j(y0|NtRfk$L90|Vb-5N14{
+zzaoW!fkCpwHKHUqKdq!Zu_%?Hyu4g5GcUV1Ik6yBFTW^#_B$IX1_lO$0G|+71_p-E
+zRsaA0|G)Um|G7v0r_BB~^T_wC#lI5f|A?LQ6O4Yu%>EHQ`$x<i5E)&)WikT;1Aj@7
+zUoZn3kEE20TwMN%lNX<S{u02Mt;fK?py}!27{U>q9N^UOpQq&Eia)N8R{VE*^yH62
+p!I|^<DL?qx_cII3ncmC8z*=E^t-5tqF9QPugQu&X%Q~loCIC?dUaSBB
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/spin-ltr-up-active.png b/src/assets/gtk-2.0/assets-Dark-Aliens/spin-ltr-up-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..555e7c1f668b02913c39d3f4ec950fd63874b68d
+GIT binary patch
+literal 262
+zcmeAS@N?(olHy`uVBq!ia0y~yV31&7VBq6mW?*1oQq%EaU|`@Z@Q5sCVBk9p!i>lB
+zSEMj7Fi4iTMwA5Sr<If^7Ns(jmzV2h=4BTrCl;jY<rk&TerF@az`$S};1lA?z`)=+
+z>Hq)#|5u&*zxd4mg~$FU&ij_V^k?Rhp9yn+#LxQ?GxulA>>n|6eniiPqART;<_ruB
+z0wqCy!3^v?5|Yxg5m5z&r!L+4{H4X{uQdY$gN3JyV~E7%t0xaKHYo5gA28AAVm<rs
+zvX#SThVQm3ethC&C`x0G*pi*u#`!5m%B(`WR;H>p;FeBZ-8VL$6@|G03?O&8`njxg
+HN@xNAy)9zi
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/spin-rtl-down-active.png b/src/assets/gtk-2.0/assets-Dark-Aliens/spin-rtl-down-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..d72288e847bb061d97c732330a731a62981e7563
+GIT binary patch
+literal 258
+zcmeAS@N?(olHy`uVBq!ia0y~yV31&7VBq6mW?*1oQq%EaU|`@Z@Q5sCVBk9p!i>lB
+zSEMj7Fi4iTMwA5Sr<If^7Ns(jmzV2h=4BTrCl;jY<rk&TerF@az`$S};1lA?z`)=+
+z>Hq)#|5u&*zxd4mg~$FU&ij_V^k>%Mp9yn+#LxQ?JLhNYobNHSf5glIq3GE^j@)9K
+z#=yWJP!i-9%)rhgAt@~z5m``p^7N%!U$i2_{1_M*Ogvp2LnOklo^)qqP~c%cup!<1
+z&uUi&!vnSaDN{Z~%BacC_C3BtT=L)x+inL_Ervr8&wIHQj<N+gHry6x0J+K4&t;uc
+GLK6V0m|lPY
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/spin-rtl-up-active.png b/src/assets/gtk-2.0/assets-Dark-Aliens/spin-rtl-up-active.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..ac479ef5e52d907ba522bd656e38d65f15ccef6a
+GIT binary patch
+literal 246
+zcmeAS@N?(olHy`uVBq!ia0y~yV31&7VBlk6W?*1Ae(j(y0|NtRfk$L90|Vb-5N14{
+zzaoW!fkCpwHKHUqKdq!Zu_%?Hyu4g5GcUV1Ik6yBFTW^#_B$IX1_lO$0G|+71_p+N
+z`Tzg_|G(<g|Aoi?$1VDvwd7~Q+#m6Cf5guD9y{j;1VzvO5i{pU^z0v%C7t{X3=I4w
+zL4Lsu96S=za^XeAr_Wru`Q^*vrX|`83=BG+E{-7_Gm{ep=Kq#wlZg2K-@RbTe--V6
+u49@=rRaw$&g@m5(6%=~DUntgs;rJCJ>-_Da>lhdq7(8A5T-G@yGywq3b6kD^
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/assets/gtk-2.0/assets-Dark-Aliens/tab.png b/src/assets/gtk-2.0/assets-Dark-Aliens/tab.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..3bc8ccb09f22c73d7519be4038811952d98ca874
+GIT binary patch
+literal 127
+zcmeAS@N?(olHy`uVBq!ia0y~yU|<Ac4kiW$h6&}t_ZS!$I14-?iy0XB4ude`@%$Aj
+z3=9mCC9V-A!TD(=<%vb94CUqJdYO6I#mR{Use1WE>9gP2NHH)l@OZj7hH%Ixcg*|C
+a%)so-_};Gm<|YOP1_n=8KbLh*2~7Y<fg%3@
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/main/labwc/themerc-Aliens b/src/main/labwc/themerc-Aliens
+new file mode 100644
+index 0000000..cad429b
+--- /dev/null
++++ b/src/main/labwc/themerc-Aliens
+@@ -0,0 +1,19 @@
++window.titlebar.padding.height: 6
++window.titlebar.padding.width: 6
++window.active.title.bg.color: #242424
++window.inactive.title.bg.color: #2C2C2C
++window.active.label.text.color: #FFFFFF
++window.inactive.label.text.color: #FFFFFF99
++window.active.border.color: #242424
++window.inactive.border.color: #2C2C2C
++menu.items.bg.color: #242424
++menu.items.text.color: #FFFFFF
++menu.items.active.bg.color: #FFFFFF
++menu.items.active.text.color: #242424
++osd.bg.color: #242424
++osd.border.color: #FFFFFF
++osd.label.text.color: #FFFFFF
++window.button.hover.bg.corner-radius: 50
++window.button.width: 22
++window.button.height: 22
++window.button.spacing: 12
+diff --git a/src/main/labwc/themerc-Dark-Aliens b/src/main/labwc/themerc-Dark-Aliens
+new file mode 100644
+index 0000000..cad429b
+--- /dev/null
++++ b/src/main/labwc/themerc-Dark-Aliens
+@@ -0,0 +1,19 @@
++window.titlebar.padding.height: 6
++window.titlebar.padding.width: 6
++window.active.title.bg.color: #242424
++window.inactive.title.bg.color: #2C2C2C
++window.active.label.text.color: #FFFFFF
++window.inactive.label.text.color: #FFFFFF99
++window.active.border.color: #242424
++window.inactive.border.color: #2C2C2C
++menu.items.bg.color: #242424
++menu.items.text.color: #FFFFFF
++menu.items.active.bg.color: #FFFFFF
++menu.items.active.text.color: #242424
++osd.bg.color: #242424
++osd.border.color: #FFFFFF
++osd.label.text.color: #FFFFFF
++window.button.hover.bg.corner-radius: 50
++window.button.width: 22
++window.button.height: 22
++window.button.spacing: 12
+diff --git a/src/main/labwc/themerc-Light-Aliens b/src/main/labwc/themerc-Light-Aliens
+new file mode 100644
+index 0000000..ccaada3
+--- /dev/null
++++ b/src/main/labwc/themerc-Light-Aliens
+@@ -0,0 +1,19 @@
++window.titlebar.padding.height: 6
++window.titlebar.padding.width: 6
++window.active.title.bg.color: #F2F2F2
++window.inactive.title.bg.color: #FAFAFA
++window.active.label.text.color: #000000
++window.inactive.label.text.color: #00000099
++window.active.border.color: #F2F2F2
++window.inactive.border.color: #FAFAFA
++menu.items.bg.color: #F2F2F2
++menu.items.text.color: #000000
++menu.items.active.bg.color: #000000
++menu.items.active.text.color: #F2F2F2
++osd.bg.color: #F2F2F2
++osd.border.color: #000000
++osd.label.text.color: #000000
++window.button.hover.bg.corner-radius: 50
++window.button.width: 22
++window.button.height: 22
++window.button.spacing: 12
+diff --git a/src/main/plank/theme-Dark-Aliens/dock.theme b/src/main/plank/theme-Dark-Aliens/dock.theme
+new file mode 100644
+index 0000000..26a6a74
+--- /dev/null
++++ b/src/main/plank/theme-Dark-Aliens/dock.theme
+@@ -0,0 +1,64 @@
++#This file based on:
++#https://git.launchpad.net/plank/tree/data/themes/Default/dock.theme
++
++[PlankTheme]
++#The roundness of the top corners.
++TopRoundness=16
++#The roundness of the bottom corners.
++BottomRoundness=0
++#The thickness (in pixels) of lines drawn.
++LineWidth=0
++#The color (RGBA) of the outer stroke.
++OuterStrokeColor=0;;0;;0;;0
++#The starting color (RGBA) of the fill gradient.
++FillStartColor=33;;33;;33;;255
++#The ending color (RGBA) of the fill gradient.
++FillEndColor=33;;33;;33;;255
++#The color (RGBA) of the inner stroke.
++InnerStrokeColor=33;;33;;33;;255
++
++[PlankDockTheme]
++#The padding on the left/right dock edges, in tenths of a percent of IconSize.
++HorizPadding=2
++#The padding on the top dock edge, in tenths of a percent of IconSize.
++TopPadding=2
++#The padding on the bottom dock edge, in tenths of a percent of IconSize.
++BottomPadding=1
++#The padding between items on the dock, in tenths of a percent of IconSize.
++ItemPadding=2
++#The size of item indicators, in tenths of a percent of IconSize.
++IndicatorSize=5
++#The size of the icon-shadow behind every item, in tenths of a percent of IconSize.
++IconShadowSize=0
++#The height (in percent of IconSize) to bounce an icon when the application sets urgent.
++UrgentBounceHeight=1.6666666666666667
++#The height (in percent of IconSize) to bounce an icon when launching an application.
++LaunchBounceHeight=0.625
++#The opacity value (0 to 1) to fade the dock to when hiding it.
++FadeOpacity=1
++#The amount of time (in ms) for click animations.
++ClickTime=0
++#The amount of time (in ms) to bounce an urgent icon.
++UrgentBounceTime=600
++#The amount of time (in ms) to bounce an icon when launching an application.
++LaunchBounceTime=600
++#The amount of time (in ms) for active window indicator animations.
++ActiveTime=150
++#The amount of time (in ms) to slide icons into/out of the dock.
++SlideTime=300
++#The time (in ms) to fade the dock in/out on a hide (if FadeOpacity is < 1).
++FadeTime=250
++#The time (in ms) to slide the dock in/out on a hide (if FadeOpacity is 1).
++HideTime=250
++#The size of the urgent glow (shown when dock is hidden), in tenths of a percent of IconSize.
++GlowSize=30
++#The total time (in ms) to show the hidden-dock urgent glow.
++GlowTime=10000
++#The time (in ms) of each pulse of the hidden-dock urgent glow.
++GlowPulseTime=2000
++#The hue-shift (-180 to 180) of the urgent indicator color.
++UrgentHueShift=150
++#The time (in ms) to move an item to its new position or its addition/removal to/from the dock.
++ItemMoveTime=450
++#Whether background and icons will unhide/hide with different speeds. The top-border of both will leave/hit the screen-edge at the same time.
++CascadeHide=true
+diff --git a/src/main/plank/theme-Light-Aliens/dock.theme b/src/main/plank/theme-Light-Aliens/dock.theme
+new file mode 100644
+index 0000000..a4029c9
+--- /dev/null
++++ b/src/main/plank/theme-Light-Aliens/dock.theme
+@@ -0,0 +1,64 @@
++#This file based on:
++#https://git.launchpad.net/plank/tree/data/themes/Default/dock.theme
++
++[PlankTheme]
++#The roundness of the top corners.
++TopRoundness=16
++#The roundness of the bottom corners.
++BottomRoundness=0
++#The thickness (in pixels) of lines drawn.
++LineWidth=0
++#The color (RGBA) of the outer stroke.
++OuterStrokeColor=0;;0;;0;;0
++#The starting color (RGBA) of the fill gradient.
++FillStartColor=242;;242;;242;;255
++#The ending color (RGBA) of the fill gradient.
++FillEndColor=242;;242;;242;;255
++#The color (RGBA) of the inner stroke.
++InnerStrokeColor=242;;242;;242;;255
++
++[PlankDockTheme]
++#The padding on the left/right dock edges, in tenths of a percent of IconSize.
++HorizPadding=2
++#The padding on the top dock edge, in tenths of a percent of IconSize.
++TopPadding=2
++#The padding on the bottom dock edge, in tenths of a percent of IconSize.
++BottomPadding=1
++#The padding between items on the dock, in tenths of a percent of IconSize.
++ItemPadding=2
++#The size of item indicators, in tenths of a percent of IconSize.
++IndicatorSize=5
++#The size of the icon-shadow behind every item, in tenths of a percent of IconSize.
++IconShadowSize=0
++#The height (in percent of IconSize) to bounce an icon when the application sets urgent.
++UrgentBounceHeight=1.6666666666666667
++#The height (in percent of IconSize) to bounce an icon when launching an application.
++LaunchBounceHeight=0.625
++#The opacity value (0 to 1) to fade the dock to when hiding it.
++FadeOpacity=1
++#The amount of time (in ms) for click animations.
++ClickTime=0
++#The amount of time (in ms) to bounce an urgent icon.
++UrgentBounceTime=600
++#The amount of time (in ms) to bounce an icon when launching an application.
++LaunchBounceTime=600
++#The amount of time (in ms) for active window indicator animations.
++ActiveTime=150
++#The amount of time (in ms) to slide icons into/out of the dock.
++SlideTime=300
++#The time (in ms) to fade the dock in/out on a hide (if FadeOpacity is < 1).
++FadeTime=250
++#The time (in ms) to slide the dock in/out on a hide (if FadeOpacity is 1).
++HideTime=250
++#The size of the urgent glow (shown when dock is hidden), in tenths of a percent of IconSize.
++GlowSize=30
++#The total time (in ms) to show the hidden-dock urgent glow.
++GlowTime=10000
++#The time (in ms) of each pulse of the hidden-dock urgent glow.
++GlowPulseTime=2000
++#The hue-shift (-180 to 180) of the urgent indicator color.
++UrgentHueShift=150
++#The time (in ms) to move an item to its new position or its addition/removal to/from the dock.
++ItemMoveTime=450
++#Whether background and icons will unhide/hide with different speeds. The top-border of both will leave/hit the screen-edge at the same time.
++CascadeHide=true
+diff --git a/src/sass/_color-palette-aliens.scss b/src/sass/_color-palette-aliens.scss
+new file mode 100644
+index 0000000..37d3bfc
+--- /dev/null
++++ b/src/sass/_color-palette-aliens.scss
+@@ -0,0 +1,74 @@
++// AncientAliens Color Palette (rice: ~/rice, палитра совпадает с noctalia/palettes/AncientAliens.json)
++// Тёмный вариант: grey-700 = фон окна = surface Noctalia (#09111c), grey-650 = карточки = surface_container Noctalia (#13202d),
++// grey-750 = заголовки/сайдбар (чуть темнее фона), *-light = акценты
++
++// Red
++$red-light: #e88a8a;
++$red-dark: #c25f62;
++
++// Pink
++$pink-light: #e0a9c8;
++$pink-dark: #b9789c;
++
++// Purple
++$purple-light: #a9b4e8;
++$purple-dark: #6f7cc0;
++
++// Blue
++$blue-light: #aad5f0;
++$blue-dark: #4f87ad;
++
++// Teal
++$teal-light: #7fd0e0;
++$teal-dark: #3c97a8;
++
++// Green
++$green-light: #9fd4b0;
++$green-dark: #5a9a6f;
++
++// Yellow
++$yellow-light: #e6cf94;
++$yellow-dark: #b89a4e;
++
++// Orange
++$orange-light: #e8a87c;
++$orange-dark: #c07a4c;
++
++// Grey (стальная синева)
++$grey-050: #f6f9fb;
++$grey-100: #edf3f8;
++$grey-150: #e3edf5;
++$grey-200: #d6e6f2;
++$grey-250: #c3d2de;
++$grey-300: #a9bccb;
++$grey-350: #8fa6b8;
++$grey-400: #6b8799;
++$grey-450: #507284;
++$grey-500: #3e5c70;
++$grey-550: #2d485b;
++$grey-600: #1c2d3d;
++$grey-650: #13202d;
++$grey-700: #09111c;
++$grey-750: #070f19;
++$grey-800: #060c15;
++$grey-850: #050a12;
++$grey-900: #04080e;
++$grey-950: #03060a;
++
++// White (чуть голубоватый, как текст в AncientAliens)
++$white: #eef5fa;
++
++// Black
++$black: #000000;
++
++// Button
++$button-close: #e88a8a;
++$button-max: #9fd4b0;
++$button-min: #e6cf94;
++
++// Link
++$links: #7fd0e0;
++
++// Theme
++$default-light: $blue-light;
++$default-dark: $blue-dark;

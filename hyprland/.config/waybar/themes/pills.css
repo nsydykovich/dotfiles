@@ -1,0 +1,40 @@
+/* Тема «Пилюли»: фона у панели нет, каждый модуль — отдельный островок с рамкой */
+@import url("_palette.css");
+
+* { font-family: "Roboto", "CaskaydiaCove Nerd Font"; font-size: 13px; min-height: 0; border: none; }
+
+window#waybar { background: transparent; color: @fg; }
+tooltip { background: @card; border: 1px solid @border; border-radius: 10px; }
+tooltip label { color: @fg; }
+
+.modules-left > widget > *, .modules-center > widget > *, .modules-right > widget > * {
+  background: @bg;
+  border: 1px solid @border;
+  border-radius: 12px;
+  padding: 0 11px;
+  margin: 0;
+  transition: all 150ms ease;
+}
+.modules-left > widget > *:hover, .modules-right > widget > *:hover { background: @card; border-color: @accent; }
+
+#custom-launcher, #custom-control-center { color: @accent; font-size: 15px; padding: 0 13px; }
+#workspaces { padding: 0 3px; }
+#workspaces:hover { background: @bg; border-color: @border; }
+#workspaces button { color: @muted; background: transparent; border-radius: 9px; padding: 0 7px; margin: 3px 1px; }
+#workspaces button:hover { background: @card; color: @fg; box-shadow: none; }
+#workspaces button.active { background: @accent; color: @bg_solid; }
+#workspaces button.urgent { background: @crit; color: @bg_solid; }
+#window { color: @muted; }
+window#waybar.empty #window { background: transparent; border-color: transparent; }
+#clock { color: @accent; font-weight: bold; padding: 0 16px; }
+
+#temperature.critical, #battery.critical:not(.charging) { color: @crit; border-color: @crit; }
+#battery.warning:not(.charging) { color: @warn; border-color: @warn; }
+#battery.charging, #battery.plugged { color: @accent; }
+#pulseaudio.muted, #custom-notifications.dnd { color: @muted; }
+#tray > .needs-attention { background: @crit; }
+
+/* Глифы Nerd Font несимметричны (слева пустого места больше, чем справа) — выравниваем отступами */
+#custom-launcher       { padding: 0 11px 0 6px; }
+#custom-control-center { padding: 0 11px 0 6px; }
+#custom-notifications { padding: 0 2px 0 0; }  /* у этого модуля внешняя плашка и label — разные элементы */

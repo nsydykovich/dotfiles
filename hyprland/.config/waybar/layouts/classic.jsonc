@@ -1,0 +1,129 @@
+// Waybar вместо панели noctalia (тот же набор модулей). Палитра AncientAliens — в style.css.
+// noctalia продолжает работать: уведомления, OSD, лаунчер, Control Center, локскрин.
+{
+  "layer": "top",
+  "position": "top",
+  "height": 34,
+  "margin-top": 8,
+  "margin-left": 8,
+  "margin-right": 8,
+  "spacing": 4,
+
+  "modules-left":   ["custom/launcher", "hyprland/workspaces", "cpu", "memory", "temperature", "hyprland/window"],
+  "modules-center": ["clock"],
+  "modules-right":  ["tray", "hyprland/language", "custom/clipboard", "pulseaudio", "backlight",
+                     "battery", "custom/notifications", "custom/control-center"],
+
+  "custom/launcher": {
+    "format": "󰣇",
+    "tooltip-format": "Applications",
+    "on-click": "noctalia msg panel-toggle launcher"
+  },
+
+  "hyprland/workspaces": {
+    "format": "{id}",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1"
+  },
+
+  "cpu": {
+    "interval": 2,
+    "format": "󰘚  {usage}%",
+    "on-click": "noctalia msg panel-toggle control-center system"
+  },
+  "memory": {
+    "interval": 3,
+    "format": "󰍛  {percentage}%",
+    "tooltip-format": "{used:0.1f} / {total:0.1f} GiB",
+    "on-click": "noctalia msg panel-toggle control-center system"
+  },
+  "temperature": {
+    "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
+    "input-filename": "temp1_input",
+    "critical-threshold": 85,
+    "format": "󰔏  {temperatureC}°",
+    "tooltip-format": "CPU (Tctl): {temperatureC}°C"
+  },
+
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 50,
+    "separate-outputs": true
+  },
+
+  "clock": {
+    "format": "{:%H:%M}",
+    "tooltip-format": "{:%A, %d %B %Y}",
+    "locale": "en_US.UTF-8",
+    "on-click": "noctalia msg panel-toggle control-center calendar"
+  },
+
+  "tray": { "icon-size": 16, "spacing": 8 },
+
+  "hyprland/language": {
+    "format": "󰌌  {short}",
+    "on-click": "hyprctl switchxkblayout all next"
+  },
+
+  "custom/clipboard": {
+    "format": "󰅍",
+    "tooltip-format": "Clipboard",
+    "on-click": "noctalia msg panel-toggle clipboard"
+  },
+
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-muted": "󰝟  {volume}%",
+    "format-icons": { "headphone": "󰋋", "default": ["󰕿", "󰖀", "󰕾"] },
+    "scroll-step": 5,
+    "on-click": "noctalia msg panel-toggle control-center audio",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-middle": "pavucontrol"
+  },
+
+  "backlight": {
+    "device": "amdgpu_bl1",
+    "format": "{icon}  {percent}%",
+    "format-icons": ["󰃞", "󰃟", "󰃠"],
+    "on-scroll-up": "brightnessctl -q set 5%+",
+    "on-scroll-down": "brightnessctl -q set 5%-",
+    "on-click": "noctalia msg panel-toggle control-center monitor"
+  },
+
+  "custom/ryzen": {
+    "exec": "~/.config/waybar/scripts/ryzen-profile.sh",
+    "return-type": "json",
+    "interval": 5,
+    "signal": 8,
+    "on-click": "~/.config/waybar/scripts/ryzen-profile.sh next",
+    "on-click-right": "~/.config/waybar/scripts/ryzen-profile.sh prev"
+  },
+
+  "battery": {
+    "bat": "BAT1",
+    "interval": 30,
+    "states": { "warning": 25, "critical": 10 },
+    "format": "{icon}  {capacity}%",
+    "format-charging": "󰂄  {capacity}%",
+    "format-plugged": "󰚥  {capacity}%",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "tooltip-format": "{timeTo}",
+    "on-click": "noctalia msg panel-toggle control-center power"
+  },
+
+  "custom/notifications": {
+    "exec": "~/.config/waybar/scripts/notifications.sh",
+    "return-type": "json",
+    "interval": 5,
+    "signal": 9,
+    "on-click": "noctalia msg panel-toggle control-center notifications",
+    "on-click-right": "noctalia msg notification-dnd-toggle && pkill -RTMIN+9 waybar"
+  },
+
+  "custom/control-center": {
+    "format": "󱕂",
+    "tooltip-format": "Control Center",
+    "on-click": "noctalia msg panel-toggle control-center",
+    "on-click-right": "noctalia msg panel-toggle session"
+  }
+}
